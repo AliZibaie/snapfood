@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Banner\StoreBannerRequest;
 use App\Models\Banner;
+use App\Services\Image;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
@@ -22,15 +24,22 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('panels.admin.banners.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBannerRequest $request)
     {
-        //
+        try {
+            $banner = Banner::query()->create(['title'=>$request->title, 'alt'=>$request->alt]);
+            Image::save($banner, $request, 'banners');
+            return redirect('panel/banners')->with('success', 'banner created successfully!');
+        }catch (\Throwable $exception){
+            dd($exception->getMessage());
+            return redirect('panel/banners', 500)->with('fail', 'failed to create banner!');
+        }
     }
 
     /**
