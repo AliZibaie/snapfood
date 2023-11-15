@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('alt');
             $table->text('title');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
