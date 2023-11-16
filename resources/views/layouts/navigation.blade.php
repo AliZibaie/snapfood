@@ -30,6 +30,11 @@
                             {{ __('Food') }}
                         </x-nav-link>
                     @endcan
+                    @can('view discount')
+                        <x-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
+                            {{ __('discounts') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
