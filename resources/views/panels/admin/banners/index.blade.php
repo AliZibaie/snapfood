@@ -32,13 +32,22 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <form action="{{route('banners.destroy', $banner)}}" method="post">
-                                        @csrf
-                                        @method("DELETE")
-                                        <x-danger-button class="ms-3">
-                                            {{ __('Delete') }}
-                                        </x-danger-button>
-                                    </form>
+                                    <div class="flex justify-center">
+                                        <form action="{{route('banners.destroy', $banner)}}" method="post">
+                                            @csrf
+                                            @method("DELETE")
+                                            <x-danger-button class="ms-3">
+                                                {{ __('Delete') }}
+                                            </x-danger-button>
+                                        </form>
+                                        <form action="{{route('banners.update', $banner)}}" method="post">
+                                            @csrf
+                                            @method("PATCH")
+                                            <x-primary-button class="ms-3">
+                                                {{ __('Set') }}
+                                            </x-primary-button>
+                                        </form>
+                                    </div>
                                 </td>
                                 </tr>
                             @empty

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Banner\StoreBannerRequest;
 use App\Models\Banner;
 use App\Services\Image;
+use App\traits\HasSetBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -60,9 +61,17 @@ class BannerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Banner $banner)
     {
-        //
+        try {
+            Banner::query()->update(['status'=>0]);
+            $banner->update(['status'=>1, 'alt'=>$banner->alt, 'title'=>$banner->title]);
+            $banner->save();
+            return redirect('panel/banners')->with('success', 'banner has been set successfully!');
+        }catch (\Throwable $exception){
+            dd($exception->getMessage());
+            return redirect('panel/banners', 500)->with('fail', 'failed to set banner!');
+        }
     }
 
     /**

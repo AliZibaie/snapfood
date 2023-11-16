@@ -12,6 +12,7 @@ class Banner extends Model
     protected $fillable = [
         'alt',
         'title',
+        'status',
     ];
     public function image(): MorphOne
     {
