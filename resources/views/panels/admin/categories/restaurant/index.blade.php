@@ -35,7 +35,7 @@
                                     {{$category->type}}
                                 </td>
                                 <td>
-                                    <div class="flex justify-center">
+                                    <div class="flex justify-center space-x-4">
                                         <form action="{{route('restaurant.destroy', $category)}}" method="post">
                                             @csrf
                                             @method("DELETE")
@@ -43,13 +43,9 @@
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
-                                        <form action="{{route('restaurant.update', $category)}}" method="post">
-                                            @csrf
-                                            @method("PATCH")
-                                            <x-primary-button class="ms-3">
+                                            <a class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('restaurant.edit', $category) }}">
                                                 {{ __('Edit') }}
-                                            </x-primary-button>
-                                        </form>
+                                            </a>
                                     </div>
                                 </td>
                             </tr>

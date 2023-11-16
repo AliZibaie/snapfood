@@ -5,14 +5,14 @@ namespace App\Http\Requests\Admin\Categories\Restaurant;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreRestaurantCategoryRequest extends FormRequest
+class UpdateRestaurantCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('create restaurant category');
+        return Auth::user()->hasPermissionTo('edit restaurant categories');
     }
 
     /**
@@ -23,7 +23,7 @@ class StoreRestaurantCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type'=>'bail|required|string|min:5|max:255|unique:categories',
+            'type'=>'bail|required|string|min:5|max:255',
         ];
     }
 }
