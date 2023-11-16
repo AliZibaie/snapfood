@@ -24,7 +24,7 @@
                     <table class="table-fixed w-full">
                         <thead>
                         <tr>
-                            <th>Category list</th>
+                            <th>Restaurant category list</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -47,7 +47,7 @@
                                             @csrf
                                             @method("PATCH")
                                             <x-primary-button class="ms-3">
-                                                {{ __('Set') }}
+                                                {{ __('Edit') }}
                                             </x-primary-button>
                                         </form>
                                     </div>

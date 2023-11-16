@@ -30,4 +30,14 @@ class RestaurantCategoryController extends Controller
             return redirect('panel/categories/restaurant', 500)->with('fail', 'failed to create restaurant category!');
         }
     }
+
+    public function destroy(int $id)
+    {
+        try {
+            Category::destroy($id);
+            return redirect('panel/categories/restaurant')->with('success', 'restaurant category deleted successfully!');
+        }catch (\Throwable $exception){
+            return redirect('panel/categories/restaurant', 500)->with('fail', 'failed to delete restaurant category!');
+        }
+    }
 }
