@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use App\Models\Banner;
 use Illuminate\Support\Facades\Storage;
 
 class Image
 {
-    public static function save($banner, $request, $folderName) : void
+    public static function save($request, $folderName) : void
     {
+        $banner = Banner::query()->create(['title'=>$request->title, 'alt'=>$request->alt]);
         $fullName = pathinfo($request->file('image')->getClientOriginalName())['filename'];
         $extension = $request->file('image')->getClientOriginalExtension();
         $newName = time().rand(100000, 1000000000).$fullName.rand(100000, 1000000000).'.'.$extension;
