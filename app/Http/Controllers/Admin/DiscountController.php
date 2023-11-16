@@ -29,4 +29,14 @@ class DiscountController extends Controller
             return redirect('panel/discounts', 500)->with('fail', 'failed to create discount!');
         }
     }
+    public function destroy(int $id)
+    {
+        try {
+            Discount::destroy($id);
+            return redirect('panel/discounts')->with('success', 'discount created successfully!');
+        }catch (\Throwable $exception){
+//            dd($exception->getMessage());
+            return redirect('panel/discounts', 500)->with('fail', 'failed to create discount!');
+        }
+    }
 }
