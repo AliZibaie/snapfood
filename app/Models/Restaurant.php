@@ -13,4 +13,15 @@ class Restaurant extends Model
     {
         return $this->morphToMany(Category::class, 'categoriable');
     }
+    protected $fillable = [
+        'name',
+        'phone',
+        'account_number',
+        'user_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
