@@ -16,7 +16,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        return view('panels.admin.banners.index');
+        return view('panels.admin.banners.index', compact('banners'));
     }
 
     /**
@@ -37,7 +37,6 @@ class BannerController extends Controller
             Image::save($banner, $request, 'banners');
             return redirect('panel/banners')->with('success', 'banner created successfully!');
         }catch (\Throwable $exception){
-            dd($exception->getMessage());
             return redirect('panel/banners', 500)->with('fail', 'failed to create banner!');
         }
     }

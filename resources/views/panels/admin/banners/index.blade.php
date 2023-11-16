@@ -24,8 +24,19 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>sasdsad</td>
-                            <td>sasdasdad</td>
+                            @forelse($banners as $banner)
+                                <td>
+                                    <div class="relative">
+                                            <img src="{{asset($banner->image->url)}}" alt="{{$banner->alt}}" class="w-full max-h-20">
+                                            <p class="absolute top-0">{{$banner->title}}</p>
+                                    </div>
+                                </td>
+                                <td>sasdasdad</td>
+                            @empty
+                                <th>There is no banner yet!</th>
+                                <th></th>
+                            @endforelse
+
                         </tr>
                         </tbody>
                     </table>

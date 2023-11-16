@@ -12,21 +12,21 @@
                                 <!--Title-->
                                 <div>
                                     <x-input-label for="title" :value="__('title')"  class="text-xl mt-6 " />
-                                    <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus autocomplete="title" />
-                                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                                    <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')"  autofocus autocomplete="title" />
+                                    <x-input-error :messages="$errors->get('title')" class="mt-2 text-xl" />
                                 </div>
 
                                 <!--Alt-->
                                 <div>
                                     <x-input-label for="alt" :value="__('Alternative word')" class="text-xl mt-6 "  />
-                                    <x-text-input id="alt" class="block mt-1 w-full" type="text" name="alt" :value="old('alt')" required autofocus autocomplete="alt" />
-                                    <x-input-error :messages="$errors->get('alt')" class="mt-2" />
+                                    <x-text-input id="alt" class="block mt-1 w-full" type="text" name="alt" :value="old('alt')"  autofocus autocomplete="alt" />
+                                    <x-input-error :messages="$errors->get('alt')" class="mt-2 text-xl" />
                                 </div>
                                 <!--Image-->
                                 <div>
                                     <x-input-label for="image" :value="__('Upload image')" class="text-xl mt-6 " />
-                                    <x-text-input id="image" class="hidden mt-1 w-full" type="File" name="image" :value="old('image')" required autofocus autocomplete="image" />
-                                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                    <x-text-input id="image" class="hidden mt-1 w-full" type="File" name="image" :value="old('image')"  autofocus autocomplete="image" />
+                                    <x-input-error :messages="$errors->get('image')" class="mt-2  text-xl" />
                                 </div>
                             </div>
 
