@@ -31,7 +31,7 @@ class RestaurantCategoryController extends Controller
             CategoryService::saveRestaurantCategory($request);
             return redirect('panel/categories/restaurant')->with('success', 'restaurant category created successfully!');
         }catch (\Throwable $exception){
-            dd($exception->getMessage());
+//            dd($exception->getMessage());
             return redirect('panel/categories/restaurant', 500)->with('fail', 'failed to create restaurant category!');
         }
     }

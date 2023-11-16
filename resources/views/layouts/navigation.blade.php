@@ -22,7 +22,12 @@
                     @endcan
                     @can('view restaurant categories')
                         <x-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
-                            {{ __('restaurant') }}
+                            {{ __('Restaurant') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('view food categories')
+                        <x-nav-link :href="route('food.index')" :active="request()->routeIs('food.index')">
+                            {{ __('Food') }}
                         </x-nav-link>
                     @endcan
                 </div>
