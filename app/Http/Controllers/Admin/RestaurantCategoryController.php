@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\Restaurant\StoreFoodCategoryRequest;
 use App\Http\Requests\Admin\Categories\Restaurant\StoreRestaurantCategoryRequest;
 use App\Http\Requests\Admin\Categories\Restaurant\UpdateFoodCategoryRequest;
+use App\Http\Requests\Admin\Categories\Restaurant\UpdateRestaurantCategoryRequest;
 use App\Models\Category;
 use \App\Services\Category as CategoryService;
 use App\Services\Image;
@@ -52,7 +53,7 @@ class RestaurantCategoryController extends Controller
         return view('panels.admin.categories.restaurant.edit', compact('category'));
     }
 
-    public function update(UpdateFoodCategoryRequest $request, int $id)
+    public function update(UpdateRestaurantCategoryRequest $request, int $id)
     {
         try {
             Category::query()->where('id', $id)->update($request->validated());
