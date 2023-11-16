@@ -21,4 +21,7 @@ class Category extends Model
     {
         return $this->morphedByMany(Food::class, 'categoraiable');
     }
+    protected $fillable = [
+      'type',
+    ];
 }

@@ -24,44 +24,41 @@
                     <table class="table-fixed w-full">
                         <thead>
                         <tr>
-                            <th>Banners list</th>
+                            <th>Category list</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody class="space-y-4">
-{{--                        @forelse($banners as $banner)--}}
-{{--                            <tr >--}}
-{{--                                <td>--}}
-{{--                                    <div class="relative">--}}
-{{--                                        <img src="{{asset($banner->image->url)}}" alt="{{$banner->alt}}" class="w-full max-h-20">--}}
-{{--                                        <p class="absolute top-5 left-60 text-black text-xl">{{$banner->title}}</p>--}}
-{{--                                    </div>--}}
-{{--                                </td>--}}
-{{--                                <td>--}}
-{{--                                    <div class="flex justify-center">--}}
-{{--                                        <form action="{{route('banners.destroy', $banner)}}" method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            @method("DELETE")--}}
-{{--                                            <x-danger-button class="ms-3">--}}
-{{--                                                {{ __('Delete') }}--}}
-{{--                                            </x-danger-button>--}}
-{{--                                        </form>--}}
-{{--                                        <form action="{{route('banners.update', $banner)}}" method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            @method("PATCH")--}}
-{{--                                            <x-primary-button class="ms-3">--}}
-{{--                                                {{ __('Set') }}--}}
-{{--                                            </x-primary-button>--}}
-{{--                                        </form>--}}
-{{--                                    </div>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                        @empty--}}
-{{--                            <tr>--}}
-{{--                                <th class="text-center text-xl text-red-800">There is no banner yet!</th>--}}
-{{--                                <th class="text-center text-xl text-red-800">And of course there is no action!</th>--}}
-{{--                            </tr>--}}
-{{--                        @endforelse--}}
+                        @forelse($categories as $category)
+                            <tr >
+                                <td>
+                                        <p class="text-black text-xl">{{$category->type}}</p>
+                                </td>
+                                <td>
+                                    <div class="flex justify-center">
+                                        <form action="{{route('restaurant.destroy', $banner)}}" method="post">
+                                            @csrf
+                                            @method("DELETE")
+                                            <x-danger-button class="ms-3">
+                                                {{ __('Delete') }}
+                                            </x-danger-button>
+                                        </form>
+                                        <form action="{{route('restaurant.update', $banner)}}" method="post">
+                                            @csrf
+                                            @method("PATCH")
+                                            <x-primary-button class="ms-3">
+                                                {{ __('Set') }}
+                                            </x-primary-button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <th class="text-center text-xl text-red-800">There is no restaurant category yet!</th>
+                                <th class="text-center text-xl text-red-800">And of course there is no action!</th>
+                            </tr>
+                        @endforelse
 
                         </tbody>
                     </table>
