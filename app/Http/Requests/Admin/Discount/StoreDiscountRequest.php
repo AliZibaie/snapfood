@@ -25,7 +25,7 @@ class StoreDiscountRequest extends FormRequest
     {
         return [
             'code'=>'bail|required|string|min:10|unique:discounts',
-            'expires_at'=>'required',
+            'expires_at'=>'bail|required|date|after:tomorrow',
             'amount'=>'bail|required|integer',
         ];
     }
