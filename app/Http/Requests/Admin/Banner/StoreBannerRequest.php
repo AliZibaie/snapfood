@@ -24,8 +24,8 @@ class StoreBannerRequest extends FormRequest
     {
         return [
             'image'=>'bail|required|image',
-            'alt'=>'bail|required|string|min:5|max:15',
-            'title'=>'bail|required|string|min:5|max:25',
+            'alt'=>'bail|required|string|min:3|max:255',
+            'title'=>'bail|required|string|min:3|max:255',
         ];
     }
 }

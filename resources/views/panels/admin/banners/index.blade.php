@@ -22,22 +22,32 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
+                        <tbody class="space-y-4">
                             @forelse($banners as $banner)
+                                <tr >
                                 <td>
                                     <div class="relative">
                                             <img src="{{asset($banner->image->url)}}" alt="{{$banner->alt}}" class="w-full max-h-20">
-                                            <p class="absolute top-0">{{$banner->title}}</p>
+                                            <p class="absolute top-5 left-60 text-black text-xl">{{$banner->title}}</p>
                                     </div>
                                 </td>
-                                <td>sasdasdad</td>
+                                <td>
+                                    <form action="{{route('banners.destroy', $banner)}}" method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <x-danger-button class="ms-3">
+                                            {{ __('Delete') }}
+                                        </x-danger-button>
+                                    </form>
+                                </td>
+                                </tr>
                             @empty
-                                <th>There is no banner yet!</th>
-                                <th></th>
+                                <tr>
+                                <th class="text-center text-xl text-red-800">There is no banner yet!</th>
+                                <th class="text-center text-xl text-red-800">And of course there is no action!</th>
+                                </tr>
                             @endforelse
 
-                        </tr>
                         </tbody>
                     </table>
                 </div>

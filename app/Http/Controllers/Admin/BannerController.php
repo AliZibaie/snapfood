@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Banner\StoreBannerRequest;
 use App\Models\Banner;
 use App\Services\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -68,8 +69,13 @@ class BannerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Banner $banner)
     {
-        //
+        try {
+            Image::delete($banner);
+            return redirect('panel/banners')->with('success', 'banner deleted successfully!');
+        }catch (\Throwable $exception){
+            return redirect('panel/banners', 500)->with('fail', 'failed to delete banner!');
+        }
     }
 }
