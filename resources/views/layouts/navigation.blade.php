@@ -17,7 +17,12 @@
                     </x-nav-link>
                     @can('view banners')
                         <x-nav-link :href="route('banners.index')" :active="request()->routeIs('banners.index')">
-                            {{ __('banners') }}
+                            {{ __('Banners') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('view restaurant categories')
+                        <x-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
+                            {{ __('restaurant') }}
                         </x-nav-link>
                     @endcan
                 </div>
