@@ -46,4 +46,13 @@ class FoodCategoryController extends Controller
             return redirect('panel/categories/food', 500)->with('fail', 'failed to update food category!');
         }
     }
+    public function destroy(int $id)
+    {
+        try {
+            Category::destroy($id);
+            return redirect('panel/categories/food')->with('success', 'food category deleted successfully!');
+        }catch (\Throwable $exception){
+            return redirect('panel/categories/food', 500)->with('fail', 'failed to delete food category!');
+        }
+    }
 }
