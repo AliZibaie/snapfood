@@ -30,20 +30,20 @@
                         </thead>
                         <tbody class="space-y-4">
                         @forelse($categories as $category)
-                            <tr >
-                                <td>
-                                        <p class="text-black text-xl">{{$category->type}}</p>
+                            <tr>
+                                <td class="text-gray-500 text-xl text-center py-4">
+                                    {{$category->type}}
                                 </td>
                                 <td>
                                     <div class="flex justify-center">
-                                        <form action="{{route('restaurant.destroy', $banner)}}" method="post">
+                                        <form action="{{route('restaurant.destroy', $category)}}" method="post">
                                             @csrf
                                             @method("DELETE")
                                             <x-danger-button class="ms-3">
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
-                                        <form action="{{route('restaurant.update', $banner)}}" method="post">
+                                        <form action="{{route('restaurant.update', $category)}}" method="post">
                                             @csrf
                                             @method("PATCH")
                                             <x-primary-button class="ms-3">
