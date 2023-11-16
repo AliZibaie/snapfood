@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Requests\Admin\Categories\Food;
+namespace App\Http\Requests\Admin\Discount;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateFoodCategoryRequest extends FormRequest
+class StoreDiscountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('edit food categories');
+        return Auth::user()->hasPermissionTo('create discount');
+
     }
 
     /**
@@ -23,7 +24,9 @@ class UpdateFoodCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type'=>'bail|required|string|min:5|max:255',
+            'code'=>'bail|required|string|min:10|unique:discounts',
+            'expires_at'=>'required',
+            'amount'=>'bail|required|integer',
         ];
     }
 }

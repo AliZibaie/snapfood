@@ -11,5 +11,6 @@ class Discount extends Model
     protected $fillable = [
       'code',
       'expires_at',
+      'amount',
     ];
 }

@@ -37,7 +37,7 @@
                                     {{$discount->code}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$discount->amount}}
+                                    {{$discount->amount}}$
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
                                     {{$discount->expires_at}}
