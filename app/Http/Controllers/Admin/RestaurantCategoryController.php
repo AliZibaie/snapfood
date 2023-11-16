@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\Restaurant\StoreRestaurantCategoryRequest;
 use App\Http\Requests\Admin\Categories\Restaurant\UpdateRestaurantCategoryRequest;
 use App\Models\Category;
+use \App\Services\Category as CategoryService;
 use App\Services\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,11 +27,9 @@ class RestaurantCategoryController extends Controller
     public function store(StoreRestaurantCategoryRequest $request)
     {
         try {
-            $category = Category::query()->create($request->validated());
-            DB::table('categoriable')->insert(['categoriable_type'=>'App/Model/restaurant', 'category_id'=>$category->id]);
+            CategoryService::saveRestaurantCategory($request);
             return redirect('panel/categories/restaurant')->with('success', 'restaurant category created successfully!');
         }catch (\Throwable $exception){
-            dd($exception->getMessage());
             return redirect('panel/categories/restaurant', 500)->with('fail', 'failed to create restaurant category!');
         }
     }
