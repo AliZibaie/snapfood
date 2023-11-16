@@ -15,6 +15,26 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('view banners')
+                        <x-nav-link :href="route('banners.index')" :active="request()->routeIs('banners.index')">
+                            {{ __('Banners') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('view restaurant categories')
+                        <x-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
+                            {{ __('Restaurant') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('view food categories')
+                        <x-nav-link :href="route('food.index')" :active="request()->routeIs('food.index')">
+                            {{ __('Food') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('view discount')
+                        <x-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
+                            {{ __('discounts') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
