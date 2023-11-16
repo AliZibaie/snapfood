@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Category extends Model
@@ -11,7 +12,7 @@ class Category extends Model
     use HasFactory;
     public function restaurants(): MorphToMany
     {
-        return $this->morphedByMany(Restaurant::class, 'categoraiable');
+        return $this->morphedByMany(Restaurant::class, 'categoriable');
     }
 
     /**
@@ -19,7 +20,7 @@ class Category extends Model
      */
     public function foods(): MorphToMany
     {
-        return $this->morphedByMany(Food::class, 'categoraiable');
+        return $this->morphedByMany(Food::class, 'categoriable');
     }
     protected $fillable = [
       'type',

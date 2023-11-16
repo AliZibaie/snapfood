@@ -15,7 +15,8 @@ class RestaurantCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = CategoryService::getRestaurantCategories();
+//        dd($categories);
         return view('panels.admin.categories.restaurant.index', compact('categories'));
     }
 
@@ -30,6 +31,7 @@ class RestaurantCategoryController extends Controller
             CategoryService::saveRestaurantCategory($request);
             return redirect('panel/categories/restaurant')->with('success', 'restaurant category created successfully!');
         }catch (\Throwable $exception){
+            dd($exception->getMessage());
             return redirect('panel/categories/restaurant', 500)->with('fail', 'failed to create restaurant category!');
         }
     }

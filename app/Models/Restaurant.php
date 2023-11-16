@@ -11,6 +11,6 @@ class Restaurant extends Model
     use HasFactory;
     public function categories(): MorphToMany
     {
-        return $this->morphToMany(Category::class, 'categoraiable');
+        return $this->morphToMany(Category::class, 'categoriable');
     }
 }
