@@ -35,7 +35,7 @@ class BannerController extends Controller
     public function store(StoreBannerRequest $request)
     {
         try {
-            Image::save($request, 'banners');
+            Image::save(new Banner(), $request, 'banners');
             return redirect('panel/banners')->with('success', 'banner created successfully!');
         }catch (\Throwable $exception){
             return redirect('panel/banners', 500)->with('fail', 'failed to create banner!');
@@ -69,7 +69,6 @@ class BannerController extends Controller
             $banner->save();
             return redirect('panel/banners')->with('success', 'banner has been set successfully!');
         }catch (\Throwable $exception){
-            dd($exception->getMessage());
             return redirect('panel/banners', 500)->with('fail', 'failed to set banner!');
         }
     }
@@ -80,7 +79,7 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         try {
-            Image::delete($banner);
+            Image::delete($banner, 'banners');
             return redirect('panel/banners')->with('success', 'banner deleted successfully!');
         }catch (\Throwable $exception){
             return redirect('panel/banners', 500)->with('fail', 'failed to delete banner!');
