@@ -60,6 +60,7 @@ class PermissionSeeder extends Seeder
             $$role = Role::create(['name'=>$role]);
         }
         $admin->givePermissionTo($adminPermissions);
+        $seller->givePermissionTo($sellerPermissions);
         $superAdmin = User::factory()->create([
             'name' => 'علی زیبایی',
             'email' => 'alizibaie1380@gmail.com',

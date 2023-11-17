@@ -32,4 +32,9 @@ class Category
             ->join('categoriables', 'categoriables.category_id', '=', 'categories.id')
             ->where('categoriables.categoriable_type', '=',  'App/Models/Food')->get();
     }
+
+    public static function saveRestaurantCategories(...$types)
+    {
+        self::saveRestaurantCategory();
+    }
 }

@@ -35,6 +35,11 @@
                             {{ __('discounts') }}
                         </x-nav-link>
                     @endcan
+                    @can('view restaurant')
+                        <x-nav-link :href="route('restaurants.edit', Auth::user()->restaurant)" :active="request()->routeIs('restaurants.index')">
+                            {{ __('Restaurant') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

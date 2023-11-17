@@ -23,8 +23,8 @@ class StoreRestaurantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone'=>'bail|required|numeric|digits:11',
-            'account_number'=>'bail|required|numeric|digits:10',
+            'phone'=>'bail|required|numeric|digits:11|unique:restaurants',
+            'account_number'=>'bail|required|numeric|digits:10|unique:restaurants',
         ];
     }
 }

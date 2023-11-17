@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Restaurant\StoreRestaurantRequest;
+use App\Http\Requests\Seller\Restaurant\UpdateRestaurantRequest;
 use App\Models\Restaurant;
+use App\Services\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,11 +36,10 @@ class RestaurantController extends Controller
         try {
             Auth::user()->restaurant()->create($request->validated());
             Auth::user()->assignRole('seller');
-            return redirect('panel/restaurants')->with('success', 'restaurant created successfully!');
+            return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit")->with('success', 'restaurant created successfully!');
         }catch (\Throwable $exception){
-            return redirect('panel/restaurants', 500)->with('fail', 'failed to create restaurant!');
+            return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit", 500)->with('fail', 'failed to create restaurant!');
         }
-        dd($request->validated());
     }
 
     /**
@@ -54,15 +55,17 @@ class RestaurantController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::getRestaurantCategories();
+        return view('panels.seller.restaurants.edit', compact('categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
-        //
+        $restaurant = Restaurant::query()->update($request->validated()->except('type'));
+        $restaurant->category
     }
 
     /**
