@@ -1,14 +1,13 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Profile Information') }}
+            {{ __('Restaurant Information') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Update your restaurants information") }}
         </p>
     </header>
-
     <form method="post" action="{{ route('restaurants.update', Auth::user()->restaurant) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
@@ -35,6 +34,10 @@
             <label for="" class="block font-medium text-sm text-gray-700 dark:text-gray-300">category</label>
             <select name="type[]" id="" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" multiple>
                 <option value="" selected disabled>Select Restaurant category</option>
+                    @forelse( Auth::user()->restaurant->restaurantCategories as $type)
+                            <option value="{{$type->type}}" selected>{{$type->type}}</option>
+                    @empty
+                    @endforelse
                 @forelse($categories as $category)
                     <option value="{{$category->type}}">{{$category->type}}</option>
                 @empty
@@ -45,7 +48,12 @@
                 <p class="text-red-400">{{$message}}</p>
             @enderror
         </div>
-
+        @if(session('success'))
+            <p class="text-xl text-center text-green-700">{{session('success')}}</p>
+        @endif
+        @if(session('fail'))
+            <p class="text-xl text-center text-red-700">{{session('fail')}}</p>
+        @endif
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

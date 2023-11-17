@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Restaurant\StoreRestaurantRequest;
 use App\Http\Requests\Seller\Restaurant\UpdateRestaurantRequest;
 use App\Models\Restaurant;
-use App\Services\Category;
+use App\Models\RestaurantCategory;
+use \App\Services\Restaurant as Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,8 +35,7 @@ class RestaurantController extends Controller
     public function store(StoreRestaurantRequest $request)
     {
         try {
-            Auth::user()->restaurant()->create($request->validated());
-            Auth::user()->assignRole('seller');
+            Service::store($request);
             return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit")->with('success', 'restaurant created successfully!');
         }catch (\Throwable $exception){
             return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit", 500)->with('fail', 'failed to create restaurant!');
@@ -53,9 +53,10 @@ class RestaurantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        $categories = Category::getRestaurantCategories();
+
+        $categories = Service::getUnselectedCategories();
         return view('panels.seller.restaurants.edit', compact('categories'));
     }
 
@@ -64,8 +65,12 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
-        $restaurant = Restaurant::query()->update($request->validated()->except('type'));
-        $restaurant->category
+        try {
+            Service::update($request);
+            return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit")->with('success', 'restaurant updated successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit", 500)->with('fail', 'failed to update restaurant!');
+        }
     }
 
     /**
