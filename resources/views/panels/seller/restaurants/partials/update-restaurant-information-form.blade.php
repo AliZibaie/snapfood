@@ -17,7 +17,11 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', Auth::user()->restaurant->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
-
+        <div>
+            <x-input-label for="shipping_cost" :value="__('Shipping cost')" />
+            <x-text-input id="shipping_cost" name="shipping_cost" type="number" class="mt-1 block w-full" :value="old('shipping_cost', Auth::user()->restaurant->shipping_cost)" required autofocus autocomplete="shipping_cost" />
+            <x-input-error class="mt-2" :messages="$errors->get('shipping_cost')" />
+        </div>
         <div>
             <x-input-label for="account_number" :value="__('Account number')" />
             <x-text-input id="account_number" name="account_number" type="number" class="mt-1 block w-full" :value="old('account_number', Auth::user()->restaurant->account_number)" required autocomplete="account_number" />
