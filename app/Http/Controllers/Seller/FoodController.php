@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Seller\Food\storeFoodRequest;
 use App\Models\Food;
+use App\Models\FoodCategory;
 use Illuminate\Http\Request;
+use App\Services\Food as Service;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -21,14 +25,15 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('panels.seller.foods.create');
+        $foodCategories = FoodCategory::all();
+        return view('panels.seller.foods.create', compact('foodCategories'));
     }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFoodRequest $request)
     {
-        //
+        Service::store($request);
     }
     /**
      * Display the specified resource.

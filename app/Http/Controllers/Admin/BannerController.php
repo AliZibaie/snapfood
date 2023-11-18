@@ -35,7 +35,8 @@ class BannerController extends Controller
     public function store(StoreBannerRequest $request)
     {
         try {
-            Image::save(new Banner(), $request, 'banners');
+            $newRecord = Banner::query()->create(['title'=>$request->title, 'alt'=>$request->alt]);
+            Image::save($request, 'banners', $newRecord);
             return redirect('panel/banners')->with('success', 'banner created successfully!');
         }catch (\Throwable $exception){
             return redirect('panel/banners', 500)->with('fail', 'failed to create banner!');

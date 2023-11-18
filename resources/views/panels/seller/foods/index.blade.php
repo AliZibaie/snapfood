@@ -36,31 +36,31 @@
                         @forelse($foods as $food)
                             <tr>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$foods->name}}
+                                    {{$food->name}}
                                 </td>
 
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$foods->raw_materials}}
+                                    {{$food->raw_materials}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$foods->price}}
+                                    {{$food->price}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$foods->foodCategories->type}}
+{{--                                    {{$foods->foodCategories->pluck('type')}}--}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    <img src="{{asset($foods->image->url)}}" alt="food image" class="w-full max-h-20">
+                                    <img src="{{asset($food->image->url ?? '')}}" alt="food image" class="w-full max-h-20">
                                 </td>
                                 <td>
                                     <div class="flex justify-center space-x-4">
-                                        <form action="{{route('foods.destroy', $foods)}}" method="post">
+                                        <form action="{{route('foods.destroy', $food)}}" method="post">
                                             @csrf
                                             @method("DELETE")
                                             <x-danger-button class="ms-3">
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
-                                        <a class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('foods.edit', $foods) }}">
+                                        <a class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('foods.edit', $food) }}">
                                             {{ __('Edit') }}
                                         </a>
                                     </div>

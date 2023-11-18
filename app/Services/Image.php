@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Image
 {
-    public static function save(Model $model, $request, $folderName) : void
+    public static function save($request, $folderName, $newRecord) : void
     {
-        $newRecord = $model::query()->create(['title'=>$request->title, 'alt'=>$request->alt]);
         $fullName = pathinfo($request->file('image')->getClientOriginalName())['filename'];
         $extension = $request->file('image')->getClientOriginalExtension();
         $newName = time().rand(100000, 1000000000).$fullName.rand(100000, 1000000000).'.'.$extension;

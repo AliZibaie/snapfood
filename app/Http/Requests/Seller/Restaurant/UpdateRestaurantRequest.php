@@ -26,8 +26,9 @@ class UpdateRestaurantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'bail:required|string|min:4|max:255',
-            'shipping_cost'=>'bail:required|integer',
+            'name'=>'bail|required|string|min:4|max:255',
+            'type'=>'bail|required',
+            'shipping_cost'=>'bail|required|integer',
             'phone'=>['bail', 'required', 'numeric', 'digits:11', Rule::unique('restaurants')->ignore(Auth::user()->restaurant->id)
             ],
             'account_number'=>['bail', 'required', 'numeric', 'digits:10', Rule::unique('restaurants')->ignore(Auth::user()->restaurant->id)],
