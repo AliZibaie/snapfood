@@ -20,6 +20,7 @@ class Restaurant extends Model
         'account_number',
         'user_id',
         'shipping_cost',
+        'status',
     ];
 
     public function user()
