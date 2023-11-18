@@ -39,6 +39,11 @@
                         <x-nav-link :href="route('restaurants.edit', Auth::user()->restaurant)" :active="request()->routeIs('restaurants.index')">
                             {{ __('Restaurant') }}
                         </x-nav-link>
+                        @can('view foods')
+                            <x-nav-link :href="route('foods.index')" :active="request()->routeIs('foods.index')">
+                                {{ __('Foods') }}
+                            </x-nav-link>
+                        @endcan
                     @endcan
                 </div>
             </div>

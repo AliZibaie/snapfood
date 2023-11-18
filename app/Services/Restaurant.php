@@ -31,4 +31,9 @@ class Restaurant
         $unselected = RestaurantCategory::query()->whereNotIn('type', $selected)->get();
         return $unselected;
     }
+
+    public static function delete($request)
+    {
+        // TODO
+    }
 }

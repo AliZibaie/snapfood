@@ -78,6 +78,6 @@ class RestaurantController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Service::delete($id);
     }
 }

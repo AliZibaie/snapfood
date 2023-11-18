@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\RedirectIfRestaurantNotCreated;
 use App\Http\Middleware\RedirectIfSeller;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
