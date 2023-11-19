@@ -65,8 +65,13 @@ class FoodController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Food $food)
     {
-        //
+        try {
+            Service::delete($food);
+            return redirect("panel/foods")->with('success', 'food deleted successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/foods", 500)->with('fail', 'failed to delete food!');
+        }
     }
 }

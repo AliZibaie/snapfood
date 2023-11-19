@@ -21,6 +21,13 @@ class Food
             Image::save($request, 'foods', $newRecord);
         }
     }
+
+    public static function delete(Model $food)
+    {
+        $food->foodCategories()->detach();
+        $food->image()->delete();
+        $food->delete();
+    }
     public static function getUnselectedCategories()
     {
 //        $selected = Auth::user()->restaurant->restaurantCategories->pluck('type')->toArray();
