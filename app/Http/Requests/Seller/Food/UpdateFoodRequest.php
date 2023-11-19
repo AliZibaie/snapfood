@@ -5,7 +5,7 @@ namespace App\Http\Requests\Seller\Food;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreFoodRequest extends FormRequest
+class UpdateFoodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreFoodRequest extends FormRequest
     public function authorize(): bool
     {
 
-        return Auth::user()->hasPermissionTo('create food');
+        return Auth::user()->hasPermissionTo('edit foods');
 
     }
 

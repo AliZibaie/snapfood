@@ -87,4 +87,5 @@
             </div>
         </div>
     </div>
+    {{ $foods->links() }}
 </x-app-layout>

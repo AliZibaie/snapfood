@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Food\storeFoodRequest;
+use App\Http\Requests\Seller\Food\UpdateFoodRequest;
 use App\Models\Food;
 use App\Models\FoodCategory;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
+        $foods = Auth::user()->restaurant->foods()->paginate(5);
         return view('panels.seller.foods.index', compact('foods'));
     }
     /**
@@ -50,16 +51,22 @@ class FoodController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Food $food)
     {
-        //
+        $unselectedTypes = Service::getUnselectedCategories($food);
+        return view('panels.seller.foods.edit', compact('food', 'unselectedTypes'));
     }
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateFoodRequest $request, Food $food)
     {
-        //
+        try {
+            Service::update($request, $food);
+            return redirect("panel/foods")->with('success', 'food edited successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/foods", 500)->with('fail', 'failed to edit food!');
+        }
     }
 
     /**

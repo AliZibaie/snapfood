@@ -24,6 +24,5 @@ class Image
         Storage::delete("public/images/$folderName/$url");
         Storage::delete($model->image->url);
         $model->image()->delete();
-        $model->delete();
     }
 }

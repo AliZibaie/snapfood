@@ -25,13 +25,29 @@ class Food
     public static function delete(Model $food)
     {
         $food->foodCategories()->detach();
-        $food->image()->delete();
+        Image::delete($food, 'foods');
         $food->delete();
     }
-    public static function getUnselectedCategories()
+    public static function getUnselectedCategories(Model $food)
     {
-//        $selected = Auth::user()->restaurant->restaurantCategories->pluck('type')->toArray();
-//        $unselected = RestaurantCategory::query()->whereNotIn('type', $selected)->get();
-//        return $unselected;
+        $selected = $food->foodCategories->pluck('type')->toArray();
+        $unselected = FoodCategory::query()->whereNotIn('type', $selected)->get();
+        return $unselected;
+    }
+
+    public static function update($request, $food)
+    {
+        $food->update(['name'=>$request->validated('name'), 'raw_materials'=>$request->validated('raw_materials'), 'price'=>$request->validated('price')]);
+        if ($request->validated('type')){
+            $food->foodCategories()->detach();
+            foreach ($request->input('type') as $type) {
+                $id = FoodCategory::query()->where('type', $type)->first()->id;
+                $food->foodCategories()->attach($id);
+            }
+        }
+        if ($request->validated('image')){
+            Image::delete($food, 'foods');
+            Image::save($request, 'foods', $food);
+        }
     }
 }

@@ -81,6 +81,7 @@ class BannerController extends Controller
     {
         try {
             Image::delete($banner, 'banners');
+            $banner->delete();
             return redirect('panel/banners')->with('success', 'banner deleted successfully!');
         }catch (\Throwable $exception){
             return redirect('panel/banners', 500)->with('fail', 'failed to delete banner!');
