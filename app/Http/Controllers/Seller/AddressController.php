@@ -25,9 +25,14 @@ class AddressController extends Controller
         return view('panels.seller.addresses.edit');
     }
 
-    public function destroy()
+    public function destroy(Address $address)
     {
-
+        try {
+            $address->delete();
+            return redirect("panel/addresses")->with('success', 'address created successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/addresses", 500)->with('fail', 'failed to create address!');
+        }
     }
 
     public function store(StoreAddressRequest $request)
