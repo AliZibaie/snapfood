@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Address\StoreAddressRequest;
+use App\Http\Requests\Seller\Address\UpdateAddressRequest;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,18 +21,18 @@ class AddressController extends Controller
     {
         return view('panels.seller.addresses.create');
     }
-    public function edit()
+    public function edit(Address $address)
     {
-        return view('panels.seller.addresses.edit');
+        return view('panels.seller.addresses.edit', compact('address'));
     }
 
     public function destroy(Address $address)
     {
         try {
             $address->delete();
-            return redirect("panel/addresses")->with('success', 'address created successfully!');
+            return redirect("panel/addresses")->with('success', 'address deleted successfully!');
         }catch (\Throwable $exception){
-            return redirect("panel/addresses", 500)->with('fail', 'failed to create address!');
+            return redirect("panel/addresses", 500)->with('fail', 'failed to delete address!');
         }
     }
 
@@ -45,8 +46,13 @@ class AddressController extends Controller
         }
     }
 
-    public function update()
+    public function update(UpdateAddressRequest $request, Address $address)
     {
-
+        try {
+            $address->update($request->validated());
+            return redirect("panel/addresses")->with('success', 'address updated successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/addresses", 500)->with('fail', 'failed to update address!');
+        }
     }
 }
