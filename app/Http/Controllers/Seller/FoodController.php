@@ -33,7 +33,12 @@ class FoodController extends Controller
      */
     public function store(StoreFoodRequest $request)
     {
-        Service::store($request);
+        try {
+            Service::store($request);
+            return redirect("panel/foods")->with('success', 'food created successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/foods", 500)->with('fail', 'failed to create food!');
+        }
     }
     /**
      * Display the specified resource.

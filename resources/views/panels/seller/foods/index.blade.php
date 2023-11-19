@@ -46,10 +46,14 @@
                                     {{$food->price}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-{{--                                    {{$foods->foodCategories->pluck('type')}}--}}
+                                    <img src="{{asset($food->image->url ?? '')}}" alt="food image" class="w-full max-h-20">
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    <img src="{{asset($food->image->url ?? '')}}" alt="food image" class="w-full max-h-20">
+                                    <ul>
+                                    @foreach($food->foodCategories->pluck('type') as $type)
+                                        <li>{{$type}}</li>
+                                    @endforeach
+                                    </ul>
                                 </td>
                                 <td>
                                     <div class="flex justify-center space-x-4">

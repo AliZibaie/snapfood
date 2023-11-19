@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware('role:admin')->group(function (){
+Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('panel/banners',BannerController::class);
     Route::resource('panel/categories/restaurant',RestaurantCategoryController::class);
     Route::resource('panel/categories/food',FoodCategoryController::class);

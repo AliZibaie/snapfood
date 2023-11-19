@@ -10,7 +10,7 @@ Route::middleware(['auth', 'stop_seller'])->group(function (){
     Route::post('panel/restaurants/create', [RestaurantController::class, 'store'])->name('restaurants.store');
 });
 
-Route::middleware('role:seller')->group(function (){
+Route::middleware(['auth', 'role:seller'])->group(function (){
     Route::resource('panel/restaurants',RestaurantController::class)->except(['create', 'store']);
     Route::resource('panel/foods',FoodController::class);
 });
