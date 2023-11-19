@@ -59,6 +59,12 @@
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
+                                        <form action="{{route('addresses.set')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$address->id}}">
+                                            @method("PATCH")
+                                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Set</button>
+                                        </form>
                                         <a class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('addresses.edit', $address) }}">
                                             {{ __('Edit') }}
                                         </a>
