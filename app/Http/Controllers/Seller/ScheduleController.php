@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Schedule\StoreScheduleRequest;
+use App\Http\Requests\Seller\Schedule\UpdateScheduleRequest;
 use App\Models\Schedule;
 use App\Services\Schedule as Service;
 use Illuminate\Support\Facades\Auth;
@@ -17,14 +18,19 @@ class ScheduleController extends Controller
     }
 
 
-    public function edit()
+    public function edit(Schedule $schedule)
     {
-        return view('panels.seller.schedules.edit');
+        return view('panels.seller.schedules.edit', compact('schedule'));
     }
 
-    public function update()
+    public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
-
+        try {
+            $schedule->update($request->validated());
+            return redirect("panel/schedules")->with('success', 'schedule updated successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/schedules", 500)->with('fail', 'failed to update schedule!');
+        }
     }
 
     public function create()
