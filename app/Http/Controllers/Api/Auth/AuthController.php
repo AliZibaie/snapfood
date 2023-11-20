@@ -31,6 +31,10 @@ class AuthController extends Controller
 
     public function logout()
     {
-
+        try {
+            return Authentication::logout();
+        }catch (\Throwable $exception){
+            return Authentication::fail($exception);
+        }
     }
 }

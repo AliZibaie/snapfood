@@ -36,6 +36,21 @@ class Authentication
             'message'=>'you are registered successfully!'
         ]);
     }
+
+    public static function logout()
+    {
+        if (Auth::check()){
+            Auth::user()->tokens()->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'you logged out successfully!',
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'you are not logged in so you cant logout!',
+        ], 401);
+    }
     public static function fail($exception)
     {
         return response()->json([
