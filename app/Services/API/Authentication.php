@@ -3,10 +3,12 @@
 namespace App\Services\API;
 
 use App\Models\User;
+use App\traits\HasFail;
 use Illuminate\Support\Facades\Auth;
 
 class Authentication
 {
+    use HasFail;
     public static function login($request)
     {
         if (Auth::attempt($request->input())){
@@ -50,12 +52,5 @@ class Authentication
             'status' => false,
             'message' => 'you are not logged in so you cant logout!',
         ], 401);
-    }
-    public static function fail($exception)
-    {
-        return response()->json([
-            'status' => false,
-            'message' => $exception->getMessage()
-        ], 500);
     }
 }

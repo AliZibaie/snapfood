@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::post('logout', [AuthController::class,'logout']);
+    Route::patch('users/update', [ProfileController::class,'update']);
+    Route::delete('users/destroy', [ProfileController::class,'destroy']);
 });
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);
