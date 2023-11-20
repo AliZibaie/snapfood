@@ -15,7 +15,7 @@ class AddressController extends Controller
     use HasSetAddress;
     public function index()
     {
-        $addresses = Address::all();
+        $addresses = Auth::user()->restaurant->addresses;
         return view('panels.seller.addresses.index', compact('addresses'));
     }
 

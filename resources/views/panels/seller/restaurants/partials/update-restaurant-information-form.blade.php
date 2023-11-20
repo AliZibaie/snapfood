@@ -59,8 +59,11 @@
             <p class="text-xl text-center text-red-700">{{session('fail')}}</p>
         @endif
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
 
+            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('schedules.create') }}">
+                {{ __('Manage schedule') }}
+            </a>
             @if (session('status') === 'profile-updated')
                 <p
                     x-data="{ show: true }"

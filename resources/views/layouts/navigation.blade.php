@@ -50,6 +50,12 @@
                             {{ __('Address') }}
                         </x-nav-link>
                     @endcan
+                    @can('view schedules')
+                            <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                                {{ __('Schedule') }}
+                            </x-nav-link>
+
+                    @endcan
                 </div>
             </div>
 

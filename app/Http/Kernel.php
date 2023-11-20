@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\RedirectIfRestaurantNotCreated;
+use App\Http\Middleware\RedirectIfScheduleCreated;
 use App\Http\Middleware\RedirectIfSeller;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -69,6 +70,7 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
-        'stop_seller'=>RedirectIfSeller::class,
+        'no_more_restaurant'=>RedirectIfSeller::class,
+        'no_more_schedule'=>RedirectIfScheduleCreated::class,
     ];
 }

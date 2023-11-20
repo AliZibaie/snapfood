@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,7 +46,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function restaurant()
+    public function restaurant() : HasOne
     {
         return $this->hasOne(Restaurant::class);
     }

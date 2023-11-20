@@ -10,7 +10,6 @@ trait HasSetAddress
     public function setAddress()
     {
         try {
-            $address =
             Auth::user()->restaurant->addresses()->update(['is_default'=>0]);
             Address::query()->where('id', request('id'))->update(['is_default'=>1]);
             return redirect("panel/addresses")->with('success', 'address set successfully!');
