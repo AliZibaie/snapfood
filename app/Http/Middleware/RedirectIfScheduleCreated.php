@@ -17,7 +17,7 @@ class RedirectIfScheduleCreated
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (count(Auth::user()->restaurant->schedules_>toArray())  == 7) {
+        if (count(Auth::user()->restaurant->schedules->toArray())  == 7) {
             return redirect(RouteServiceProvider::HOME);
         }
         return $next($request);
