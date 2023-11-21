@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Profile\UpdateProfileRequest;
 use App\Models\User;
 use App\Services\API\Authentication;
 use App\Services\API\Profile;
@@ -11,10 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function update()
+    public function update(UpdateProfileRequest $request, User $user)
     {
         try {
-            return Profile::update();
+            return Profile::update($request, $user);
         }catch (\Throwable $exception){
             return Profile::fail($exception);
         }

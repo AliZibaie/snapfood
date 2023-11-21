@@ -25,8 +25,12 @@ class Profile
         ], 401);
     }
 
-    public static function update()
+    public static function update($request)
     {
-        
+        Auth::user()->update($request->input());
+        return response()->json([
+            'status' => true,
+            'message'=>'your information updated successfully!'
+        ]);
     }
 }
