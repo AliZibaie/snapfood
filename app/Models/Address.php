@@ -25,6 +25,7 @@ class Address extends Model
         'address',
         'latitude',
         'longitude',
+        'is_default',
     ];
     protected $casts = [
       'is_default'=>IsDefault::class,

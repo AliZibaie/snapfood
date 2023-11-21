@@ -27,10 +27,8 @@ class StoreAddressRequest extends FormRequest
             'title'=>'bail|required|min:3|max:255',
             'address'=>'bail|required|min:3|max:255',
             'latitude'=>['bail', 'required', 'decimal:0,5',
-//                Rule::unique('addresses')->where('latitude', $this->input('latitude'))->where('longitude', $this->input('longitude'))->ignore(Auth::user()->restaurant->addresses->pluck('id')->toArray())
                 ],
             'longitude'=>['bail', 'required', 'decimal:0,5',
-//                Rule::unique('addresses')->where('latitude', $this->input('latitude'))->where('longitude', $this->input('longitude'))->ignore(Auth::user()->restaurant->addresses->pluck('id'))
             ],
         ];
     }

@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->group( function () {
+Route::middleware('auth:sanctum')->group(function (){
     Route::post('logout', [AuthController::class,'logout']);
     Route::apiResource('users', ProfileController::class);
     Route::apiResource('addresses', AddressController::class);
+//    Route::put('addresses', [AddressController::class, 'setAddress']);
 });
-
+Route::patch('addresses', [AddressController::class, 'setAddress']);
+//Route::apiResource('addresses', AddressController::class);
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

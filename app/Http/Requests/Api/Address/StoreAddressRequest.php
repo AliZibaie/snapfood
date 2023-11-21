@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Requests\Seller\Address;
+namespace App\Http\Requests\Api\Address;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
-class UpdateAddressRequest extends FormRequest
+class StoreAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('edit addresses');
+        return Auth::check();
     }
 
     /**
