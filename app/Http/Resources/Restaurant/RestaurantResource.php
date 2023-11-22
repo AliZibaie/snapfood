@@ -22,6 +22,7 @@ class RestaurantResource extends JsonResource
             'is_open'=>$this->status,
             'image'=>asset($this->image->url),
             'foods'=>Restaurant::getFoods($this),
+            'schedules'=>Restaurant::getSchedules($this),
             'current_address'=>Restaurant::getDefaultAddress($this),
             'unavailable_addresses'=>[
                 'address' => Restaurant::getUnavailableAddresses($this),
