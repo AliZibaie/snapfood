@@ -43,4 +43,8 @@ class Restaurant extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
