@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\IsOpen;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -47,4 +48,7 @@ class Restaurant extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+    protected $casts = [
+        'status'=>IsOpen::class,
+    ];
 }

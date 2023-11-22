@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Restaurant;
 
+use App\Services\API\Resources\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,15 +18,14 @@ class RestaurantResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->name,
-            'type'=>$this->restaurantCategories->pluck('type')->toArray(),
-            'current_address'=>$this->addresses()->where('is_default', 1)->select('title', 'address', 'longitude', 'latitude')->get()->toArray(),
-            'other_available_addresses'=>[
-                'address' => $this->addresses()->where('is_default', 0)->select('title', 'address', 'longitude', 'latitude')->get()->toArray(),
-//                'latitude' => $this->addresses->pluck('latitude')->toArray(),
-//                'longitude' => $this->addresses->pluck('longitude')->toArray(),
-            ],
+            'type'=>Restaurant::getCatgegories($this),
             'is_open'=>$this->status,
-//            'image'=>$this->image_>url,
+            'image'=>asset($this->image->url),
+            'foods'=>Restaurant::getFoods($this),
+            'current_address'=>Restaurant::getDefaultAddress($this),
+            'unavailable_addresses'=>[
+                'address' => Restaurant::getUnavailableAddresses($this),
+            ],
 //            'score'=>$this->score,
         ];
     }
