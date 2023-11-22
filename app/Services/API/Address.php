@@ -6,6 +6,7 @@ use App\Http\Resources\Address\AddressCollection;
 use App\Http\Resources\Address\AddressResource;
 use App\traits\HasFail;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Address  as Model;
 
 class Address
 {
@@ -45,7 +46,7 @@ class Address
                 'message'=>'this is not your address my bro!',
             ], 403);
         }
-        $address->update([$request->validated()]);
+        $address->update($request->validated());
         if (Auth::user()->tokens()->first()){
             return response()->json([
                 'status'=>true,
