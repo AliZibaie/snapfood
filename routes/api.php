@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function (){
     Route::post('logout', [AuthController::class,'logout']);
     Route::apiResource('users', ProfileController::class);
+    Route::post('users/{user}', [ProfileController::class, 'update']);
     Route::apiResource('addresses', AddressController::class);
     Route::patch('addresses/{address}', [AddressController::class, 'setAddress']);
     Route::post('addresses/{address}', [AddressController::class, 'update']);
