@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Address\AddressController;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Restaurant\RestaurantController;
 use App\Http\Controllers\Api\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('addresses', AddressController::class);
     Route::patch('addresses/{address}', [AddressController::class, 'setAddress']);
     Route::put('addresses/{address}', [AddressController::class, 'update']);
+    Route::apiResource('restaurants', RestaurantController::class);
 });
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);
