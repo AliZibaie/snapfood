@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api\Address;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 
 class StoreAddressRequest extends FormRequest
@@ -30,5 +32,13 @@ class StoreAddressRequest extends FormRequest
             'longitude'=>['bail', 'required', 'decimal:0,5',
             ],
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'validation failed',
+            'data'      => $validator->errors()
+        ], 403));
     }
 }

@@ -23,6 +23,7 @@ Route::middleware(['auth', 'role:seller'])->group(function (){
     Route::resource('panel/restaurants',RestaurantController::class)->except(['create', 'store']);
     Route::resource('panel/foods',FoodController::class);
     Route::resource('panel/addresses',AddressController::class);
-    Route::patch('panel/addresses/',[AddressController::class, 'setAddress'])->name('addresses.set');
+    Route::patch('panel/addresses/{address}',[AddressController::class, 'setAddress'])->name('addresses.set');
+    Route::put('panel/addresses/{address}',[AddressController::class, 'update'])->name('addresses.update');
     Route::resource('panel/schedules',ScheduleController::class)->except(['create', 'store']);
 });

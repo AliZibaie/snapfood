@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Requests\Api\Auth;
+namespace App\Http\Requests\Api\Address;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
 
-class RegisterRequest extends FormRequest
+class UpdateAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::guest();
+        return Auth::check();
     }
 
     /**
@@ -26,10 +25,12 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'bail|required',
-            'email'=>'bail|required|email|unique:users',
-            'password'=>['bail', "required", Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(2)],
-            'password_confirmation' => 'bail|required|same:password',
+            'title'=>'bail|required|min:3|max:255',
+            'address'=>'bail|required|min:3|max:255',
+            'latitude'=>['bail', 'required', 'decimal:0,5',
+            ],
+            'longitude'=>['bail', 'required', 'decimal:0,5',
+            ],
         ];
     }
     protected function failedValidation(Validator $validator)

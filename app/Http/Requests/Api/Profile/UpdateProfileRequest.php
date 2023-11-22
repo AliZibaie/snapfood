@@ -31,12 +31,12 @@ class UpdateProfileRequest extends FormRequest
             'email'=>['bail', 'required', 'email', Rule::unique('users')],
         ];
     }
-//    protected function failedValidation(Validator $validator)
-//    {
-//        throw new HttpResponseException(response()->json([
-//            'success'   => false,
-//            'message'   => 'validation failed',
-//            'data'      => $validator->errors()
-//        ]));
-//    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'validation failed',
+            'data'      => $validator->errors()
+        ], 403));
+    }
 }

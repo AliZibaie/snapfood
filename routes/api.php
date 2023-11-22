@@ -20,9 +20,8 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('logout', [AuthController::class,'logout']);
     Route::apiResource('users', ProfileController::class);
     Route::apiResource('addresses', AddressController::class);
-//    Route::put('addresses', [AddressController::class, 'setAddress']);
+    Route::patch('addresses/{address}', [AddressController::class, 'setAddress']);
+    Route::put('addresses/{address}', [AddressController::class, 'update']);
 });
-Route::patch('addresses', [AddressController::class, 'setAddress']);
-//Route::apiResource('addresses', AddressController::class);
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

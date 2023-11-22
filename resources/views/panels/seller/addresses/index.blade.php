@@ -59,7 +59,7 @@
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
-                                        <form action="{{route('addresses.set')}}" method="post">
+                                        <form action="{{route('addresses.set', $address)}}" method="post">
                                             @csrf
                                             <input type="hidden" name="id" value="{{$address->id}}">
                                             @method("PATCH")
