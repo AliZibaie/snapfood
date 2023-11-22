@@ -21,7 +21,7 @@
                         </header>
                         <form method="post" action="{{ route('addresses.update', $address) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                             @csrf
-                            @method('patch')
+                            @method('put')
 
 
                             <div>

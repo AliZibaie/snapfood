@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('users', ProfileController::class);
     Route::apiResource('addresses', AddressController::class);
     Route::patch('addresses/{address}', [AddressController::class, 'setAddress']);
-    Route::put('addresses/{address}', [AddressController::class, 'update']);
+    Route::post('addresses/{address}', [AddressController::class, 'update']);
     Route::apiResource('restaurants', RestaurantController::class);
     Route::apiResource('restaurants/{restaurant}/foods', FoodController::class);
 });

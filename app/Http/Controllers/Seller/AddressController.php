@@ -62,6 +62,7 @@ class AddressController extends Controller
     {
         try {
             $address->update($request->validated());
+            $address->save();
             return redirect("panel/addresses")->with('success', 'address updated successfully!');
         }catch (\Throwable $exception){
             return redirect("panel/addresses", 500)->with('fail', 'failed to update address!');
