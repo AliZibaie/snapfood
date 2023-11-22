@@ -69,7 +69,6 @@ class RestaurantController extends Controller
             Service::update($request);
             return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit")->with('success', 'restaurant updated successfully!');
         }catch (\Throwable $exception){
-            dd($exception->getMessage());
             return redirect("panel/restaurants/".Auth::user()->restaurant->id."/edit", 500)->with('fail', 'failed to update restaurant!');
         }
     }
