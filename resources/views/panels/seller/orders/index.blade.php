@@ -36,10 +36,10 @@
                                 </td>
                                 <form action="{{route('orders.update', $order['id'])}}" method="post">
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    <label>
-                                        <select>
+                                    <label class="bg-gray-700">
+                                        <select class="bg-gray-700" name="status">
                                             @foreach($order['status'] as $status)
-                                            <option value="{{$status}}">{{$status}}</option>
+                                            <option value="{{$status}}" class="bg-gray-700">{{$status}}</option>
                                             @endforeach
                                         </select>
                                     </label>
@@ -49,9 +49,8 @@
 
                                             @csrf
                                             @method("PATCH")
-                                            <x-danger-button class="ms-3">
-                                                {{ __('Change') }}
-                                            </x-danger-button>
+                                        <button type="submit"
+                                        class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Change</button>
                                 </td>
                                 </form>
                             </tr>
