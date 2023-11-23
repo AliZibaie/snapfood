@@ -57,8 +57,9 @@ class User extends Authenticatable
         return $this->morphMany(Address::class, 'addressable');
     }
 
-    public function carts(): BelongsToMany
+    public function carts() : HasMany
     {
-        return $this->belongsToMany(Cart::class);
+        return  $this->hasMany(Cart::class);
     }
+
 }

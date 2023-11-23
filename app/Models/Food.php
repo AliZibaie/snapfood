@@ -24,6 +24,10 @@ class Food extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+    public function carts(): BelongsToMany
+    {
+        return $this->belongsToMany(Cart::class);
+    }
     protected $fillable = [
         'name',
         'raw_materials',
