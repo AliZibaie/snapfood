@@ -36,4 +36,8 @@ class CartController extends Controller
             return Service::fail($exception);
         }
     }
+    public function show(Cart $cart)
+    {
+        return Service::show($cart);
+    }
 }

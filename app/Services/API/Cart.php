@@ -2,6 +2,7 @@
 
 namespace App\Services\API;
 
+use App\Http\Resources\Cart\CartResource;
 use App\traits\HasFail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart as Model;
@@ -30,14 +31,32 @@ class Cart
     }
     public static function update($request, $cart)
     {
-        $cart->query()->update([
-            'count'=>$request->count ?? $cart->count,
-        ]);
-        $cart->foods()->detach();
-        $cart->foods()->attach($request->food_id);
+        if (in_array($cart->toArray(), Auth::user()->carts->toArray())){
+            $cart->query()->update([
+                'count'=>$request->count ?? $cart->count,
+            ]);
+            $cart->foods()->detach();
+            $cart->foods()->attach($request->food_id);
+            return response()->json([
+                'status'=>true,
+                'message'=>'your cart updated successfully!',
+            ]);
+        }
         return response()->json([
-            'status'=>true,
-            'message'=>'your cart updated successfully!',
-        ]);
+            'status'=>false,
+            'message'=>'this is not your cart my bro!',
+        ], 403);
+
+    }
+
+    public static function show($cart)
+    {
+        if (in_array($cart->toArray(), Auth::user()->carts->toArray())){
+            return new CartResource($cart);
+        }
+        return response()->json([
+            'status'=>false,
+            'message'=>'this is not your cart my bro!',
+        ], 403);
     }
 }
