@@ -2,11 +2,8 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex justify-between">
             <div class="">
-                {{ __('Orders management') }}
-            </div>
-            <x-nav-link :href="route('archives.index')">
                 {{ __('Archives') }}
-            </x-nav-link>
+            </div>
         </h2>
     </x-slot>
 
@@ -24,8 +21,8 @@
                         <thead>
                         <tr>
                             <th>Destination</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>Foods</th>
+                            <th>Price</th>
                         </tr>
                         </thead>
                         <tbody class="space-y-4">
@@ -34,26 +31,6 @@
                                 <td class="text-gray-500 text-xl text-center py-4">
                                     {{$order['address']}}
                                 </td>
-                                <form action="{{route('orders.update', $order['id'])}}" method="post">
-                                <td class="text-gray-500 text-xl text-center py-4">
-                                    <label>
-                                        <select>
-                                            @foreach($order['status'] as $status)
-                                            <option value="{{$status}}">{{$status}}</option>
-                                            @endforeach
-                                        </select>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="flex justify-center space-x-4">
-
-                                            @csrf
-                                            @method("PATCH")
-                                            <x-danger-button class="ms-3">
-                                                {{ __('Change') }}
-                                            </x-danger-button>
-                                </td>
-                                </form>
                             </tr>
                         @empty
                             <tr>
