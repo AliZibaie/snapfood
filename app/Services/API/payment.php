@@ -11,7 +11,10 @@ class payment
     public static function store($cart)
     {
         if (in_array($cart->toArray(), Auth::user()->carts->toArray())){
-            Auth::user()->payments()->create([ 'amount'=>self::getTotalPrice($cart)]);
+            $payment = Auth::user()->payments()->create([ 'amount'=>self::getTotalPrice($cart)]);
+            $payment->order()->create([
+                'address'=>Auth::user()->addresses()->where('is_default', 1)->first()->address,
+            ]);
             $cart->foods()->detach();
             $cart->delete();
             return response()->json([
