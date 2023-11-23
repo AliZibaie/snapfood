@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Address\AddressController;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Cart\CartController;
 use App\Http\Controllers\Api\Restaurant\RestaurantController;
 use App\Http\Controllers\Api\Food\FoodController;
 use App\Http\Controllers\Api\User\ProfileController;
@@ -27,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('addresses/{address}', [AddressController::class, 'update']);
     Route::apiResource('restaurants', RestaurantController::class);
     Route::apiResource('restaurants/{restaurant}/foods', FoodController::class);
+    Route::apiResource('carts', CartController::class);
 });
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);
