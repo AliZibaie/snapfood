@@ -54,7 +54,11 @@
                             <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
                                 {{ __('Schedule') }}
                             </x-nav-link>
-
+                    @endcan
+                    @can('view orders')
+                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
                     @endcan
                 </div>
             </div>
