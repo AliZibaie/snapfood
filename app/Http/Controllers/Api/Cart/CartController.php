@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Cart;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Cart\StoreCartRequest;
+use App\Http\Requests\Api\Cart\UpdateCartRequest;
 use App\Http\Resources\Cart\CartCollection;
 use App\Models\Cart;
 use Illuminate\Http\Request;
@@ -22,6 +23,15 @@ class CartController extends Controller
 
         try {
             return Service::store($request);
+        }catch (\Throwable $exception){
+            return Service::fail($exception);
+        }
+    }
+
+    public function update(UpdateCartRequest $request, Cart $cart)
+    {
+        try {
+            return Service::update($request, $cart);
         }catch (\Throwable $exception){
             return Service::fail($exception);
         }

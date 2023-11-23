@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('restaurants', RestaurantController::class);
     Route::apiResource('restaurants/{restaurant}/foods', FoodController::class);
     Route::apiResource('carts', CartController::class);
+    Route::post('carts/{cart}', [CartController::class, 'update']);
 });
 Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);

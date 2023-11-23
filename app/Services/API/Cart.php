@@ -28,4 +28,16 @@ class Cart
             'message'=>'your cart added successfully!',
         ]);
     }
+    public static function update($request, $cart)
+    {
+        $cart->query()->update([
+            'count'=>$request->count ?? $cart->count,
+        ]);
+        $cart->foods()->detach();
+        $cart->foods()->attach($request->food_id);
+        return response()->json([
+            'status'=>true,
+            'message'=>'your cart updated successfully!',
+        ]);
+    }
 }
