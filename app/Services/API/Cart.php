@@ -13,6 +13,24 @@ class Cart
 
     public static function store($request)
     {
+        if (!Auth::user()->addresses->first()){
+            return response()->json([
+                'status'=>false,
+                'message'=>'you cant add a cart without any address!',
+            ], 403);
+        }
+        if (!Auth::user()->addresses()->where('is_default', 1)->first()){
+            return response()->json([
+                'status'=>false,
+                'message'=>'you cant add a cart without any current address!',
+            ], 403);
+        }
+        if (Auth::user()->carts->first()){
+            return response()->json([
+                'status'=>false,
+                'message'=>'you cant have more than one cart!',
+            ], 403);
+        }
         $cart = Model::query()->create( [
             'count'=>$request->count ?? 1,
             'user_id'=>Auth::id(),
