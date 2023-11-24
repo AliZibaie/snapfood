@@ -23,7 +23,7 @@ class StoreFoodCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type'=>'bail|required|string|min:5|max:255|unique:categories',
+            'type'=>'bail|required|string|min:5|max:255|unique:food_categories',
         ];
     }
 }

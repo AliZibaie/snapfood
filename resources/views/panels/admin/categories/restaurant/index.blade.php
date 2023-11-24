@@ -29,21 +29,21 @@
                         </tr>
                         </thead>
                         <tbody class="space-y-4">
-                        @forelse($categories as $category)
+                        @forelse($restaurantCategories as $restaurantCategory)
                             <tr>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$category->type}}
+                                    {{$restaurantCategory->type}}
                                 </td>
                                 <td>
                                     <div class="flex justify-center space-x-4">
-                                        <form action="{{route('restaurant.destroy', $category)}}" method="post">
+                                        <form action="{{route('restaurant.destroy', $restaurantCategory)}}" method="post">
                                             @csrf
                                             @method("DELETE")
                                             <x-danger-button class="ms-3">
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
-                                            <a class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('restaurant.edit', $category) }}">
+                                            <a class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('restaurant.edit', $restaurantCategory) }}">
                                                 {{ __('Edit') }}
                                             </a>
                                     </div>

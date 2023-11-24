@@ -47,6 +47,16 @@ class PermissionSeeder extends Seeder
             Permission::create(['name' => 'delete restaurant']),
             Permission::create(['name' => 'edit restaurant']),
 
+            Permission::create(['name' => 'view addresses']),
+            Permission::create(['name' => 'create address']),
+            Permission::create(['name' => 'delete addresses']),
+            Permission::create(['name' => 'edit addresses']),
+
+            Permission::create(['name' => 'view schedules']),
+            Permission::create(['name' => 'create schedule']),
+            Permission::create(['name' => 'delete schedules']),
+            Permission::create(['name' => 'edit schedules']),
+
             Permission::create(['name' => 'view foods']),
             Permission::create(['name' => 'create food']),
             Permission::create(['name' => 'delete foods']),
@@ -60,6 +70,7 @@ class PermissionSeeder extends Seeder
             $$role = Role::create(['name'=>$role]);
         }
         $admin->givePermissionTo($adminPermissions);
+        $seller->givePermissionTo($sellerPermissions);
         $superAdmin = User::factory()->create([
             'name' => 'علی زیبایی',
             'email' => 'alizibaie1380@gmail.com',
