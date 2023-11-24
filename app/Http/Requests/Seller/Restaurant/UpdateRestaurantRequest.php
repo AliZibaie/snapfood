@@ -28,6 +28,7 @@ class UpdateRestaurantRequest extends FormRequest
         return [
             'name'=>'bail|required|string|min:4|max:255',
             'type'=>'bail|required',
+            'image'=>'bail|image',
             'shipping_cost'=>'bail|required|integer',
             'phone'=>['bail', 'required', 'numeric', 'digits:11', Rule::unique('restaurants')->ignore(Auth::user()->restaurant->id)
             ],

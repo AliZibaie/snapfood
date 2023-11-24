@@ -46,7 +46,9 @@ class Food
             }
         }
         if ($request->validated('image')){
-            Image::delete($food, 'foods');
+            if (isset($food->image->url)){
+                Image::delete($food, 'foods');
+            }
             Image::save($request, 'foods', $food);
         }
     }

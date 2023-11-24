@@ -7,12 +7,22 @@ use App\Http\Requests\Seller\Address\StoreAddressRequest;
 use App\Http\Requests\Seller\Address\UpdateAddressRequest;
 use App\Models\Address;
 use App\traits\HasSetAddress;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
     use HasSetAddress;
+    private  $model_type ;
+
+
+    public function setModelType(): void
+    {
+        $this->model_type = Auth::user()->restaurant;
+    }
+
+
     public function index()
     {
         $addresses = Auth::user()->restaurant->addresses;

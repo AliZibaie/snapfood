@@ -8,7 +8,7 @@
             {{ __("Update your restaurants information") }}
         </p>
     </header>
-    <form method="post" action="{{ route('restaurants.update', Auth::user()->restaurant) }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('restaurants.update', Auth::user()->restaurant) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -51,6 +51,13 @@
             @error('type')
                 <p class="text-red-400">{{$message}}</p>
             @enderror
+        </div>
+        <img src="{{asset(Auth::user()->restaurant->image->url ?? '')}}" alt="food image" class="w-full max-h-20">
+        <!--Image-->
+        <div>
+            <x-input-label for="image" :value="__('Upload image')" class="text-xl mt-6 " />
+            <x-text-input id="image" class="hidden mt-1 w-full" type="File" name="image" :value="old('image', Auth::user()->restaurant->image)"  autofocus autocomplete="image" />
+            <x-input-error :messages="$errors->get('image')" class="mt-2  text-xl" />
         </div>
         @if(session('success'))
             <p class="text-xl text-center text-green-700">{{session('success')}}</p>
