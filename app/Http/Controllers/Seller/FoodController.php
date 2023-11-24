@@ -18,7 +18,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Auth::user()->restaurant->foods()->paginate(5);
+        $foods = Service::index();
         return view('panels.seller.foods.index', compact('foods'));
     }
     /**
