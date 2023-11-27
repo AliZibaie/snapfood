@@ -23,5 +23,6 @@ class Cart extends Model
         [
             'count',
             'user_id',
+            'food_id',
         ];
 }

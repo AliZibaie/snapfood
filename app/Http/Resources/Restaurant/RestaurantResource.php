@@ -19,7 +19,7 @@ class RestaurantResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->name,
             'type'=>Restaurant::getCatgegories($this),
-            'is_open'=>$this->status,
+            'is_open'=>Restaurant::isOpen($this),
             'image'=>asset($this->image->url),
             'foods'=>Restaurant::getFoods($this),
             'schedules'=>Restaurant::getSchedules($this),

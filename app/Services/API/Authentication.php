@@ -15,7 +15,10 @@ class Authentication
             $token = Auth::user()->createToken('Personal Access Token')->plainTextToken;
             return response()->json([
                 'status' => true,
-                'user'=>Auth::user(),
+                'user'=>[
+                    'email'=>Auth::user()->email,
+                    'name'=>Auth::user()->name,
+                ],
                 'token'=>$token,
                 'message'=>'you logged in successfully!'
             ]);
@@ -33,7 +36,10 @@ class Authentication
         $token = Auth::user()->createToken('Personal Access Token')->plainTextToken;
         return response()->json([
             'status' => true,
-            'user'=>Auth::user(),
+            'user'=>[
+                'email'=>Auth::user()->email,
+                'name'=>Auth::user()->name,
+            ],
             'token'=>$token,
             'message'=>'you are registered successfully!'
         ]);

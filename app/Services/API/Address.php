@@ -16,18 +16,31 @@ class Address
         $address = Auth::user()->addresses()->create($request->input());
         return response()->json([
             'status'=>true,
-            'address'=>$address,
+            'address'=>[
+                'id'=>$address->id,
+                'title'=>$address->title,
+                'address'=>$address->address,
+                'longitude'=>$address->longitude,
+                'latitude'=>$address->latitude,
+            ],
             'message'=>'your address added successfully!',
         ]);
     }
 
     public static function index()
     {
+
+        if (Auth::user()->getRoleNames()->first() == 'admin'){
+            return new AddressCollection(Model::all());
+        }
         return new AddressCollection(Auth::user()->addresses);
     }
 
     public  static  function show($address)
     {
+        if (Auth::user()->getRoleNames()->first() == 'admin'){
+            return new AddressResource($address);
+        }
         if (in_array($address->toArray(), Auth::user()->addresses->toArray())){
             return new AddressResource($address);
         }

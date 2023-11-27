@@ -13,7 +13,7 @@ class Cart
 
     public static function store($request)
     {
-        if (!Auth::user()->addresses->first()){
+        if (!Auth::user()->addresses && !Auth::user()->addresses->first()){
             return response()->json([
                 'status'=>false,
                 'message'=>'you cant add a cart without any address!',
@@ -25,7 +25,7 @@ class Cart
                 'message'=>'you cant add a cart without any current address!',
             ], 403);
         }
-        if (Auth::user()->carts->first()){
+        if (Auth::user()->carts && Auth::user()->carts->first()){
             return response()->json([
                 'status'=>false,
                 'message'=>'you cant have more than one cart!',
@@ -34,6 +34,7 @@ class Cart
         $cart = Model::query()->create( [
             'count'=>$request->count ?? 1,
             'user_id'=>Auth::id(),
+            'food_id'=>$request->food_id,
         ]);
         $food = \App\Models\Food::query()->find($request->food_id);
         return response()->json([

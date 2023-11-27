@@ -17,7 +17,7 @@ class DiscountFactory extends Factory
     public function definition(): array
     {
         return [
-            'label'=>range(10, 90, 10),
+            'label'=>$this->faker->unique()->randomNumber(2),
             'code'=>rand(10000, 99999),
             'expires_at'=>$this->faker->dateTimeBetween('now', '15days'),
         ];

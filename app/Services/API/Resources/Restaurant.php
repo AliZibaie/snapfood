@@ -40,4 +40,9 @@ class Restaurant
     {
         return $resource->schedules()->select('day', 'open_time', 'close_time')->get()->toArray();
     }
+
+    public static function isOpen(RestaurantResource $resource)
+    {
+        return 'bolbol';
+    }
 }
