@@ -38,13 +38,13 @@
 
                             <div>
                                 <x-input-label for="latitude" :value="__('Latitude')" />
-                                <x-text-input id="latitude" name="latitude" type="text" class="mt-1 block w-full" :value="old('latitude', $address->latitude)" required autofocus autocomplete="latitude" />
+                                <x-text-input id="latitude" name="latitude" type="number" class="mt-1 block w-full" :value="old('latitude', $address->latitude)" required autofocus autocomplete="latitude" />
                                 <x-input-error class="mt-2" :messages="$errors->get('latitude')" />
                             </div>
 
                             <div>
                                 <x-input-label for="longitude" :value="__('Longitude')" />
-                                <x-text-input id="longitude" name="longitude" type="text" class="mt-1 block w-full" :value="old('longitude', $address->longitude)" required autofocus autocomplete="longitude" />
+                                <x-text-input id="longitude" name="longitude" type="number" class="mt-1 block w-full" :value="old('longitude', $address->longitude)" required autofocus autocomplete="longitude" />
                                 <x-input-error class="mt-2" :messages="$errors->get('longitude')" />
                             </div>
 

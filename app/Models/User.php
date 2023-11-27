@@ -58,13 +58,13 @@ class User extends Authenticatable
         return $this->morphMany(Address::class, 'addressable');
     }
 
-    public function carts() : HasMany
+    public function cart() : HasMany
     {
         return  $this->hasMany(Cart::class);
     }
-    public function payments(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Order::class);
     }
 
 }

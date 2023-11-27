@@ -11,19 +11,19 @@
                         <div class="py-4">
                             <!--Code-->
                             <div>
-                                <x-input-label for="code" :value="__('code')"  class="text-lg mt-6 " />
-                                <x-text-input id="code" class="block mt-1 w-full" type="text" name="code" :value="old('code')"  autofocus autocomplete="code" />
+                                <x-input-label for="code" :value="__('Code')"  class="text-lg mt-6 " />
+                                <x-text-input id="code" class="block mt-1 w-full" type="number" name="code" :value="old('code')"  autofocus autocomplete="code" />
                                 <x-input-error :messages="$errors->get('code')" class="mt-2 text-xl" />
                             </div>
-                            <!--Amount-->
+                            <!--Label-->
                             <div>
-                                <x-input-label for="amount" :value="__('amount')"  class="text-lg mt-6 " />
-                                <x-text-input id="amount" class="block mt-1 w-full" type="number" name="amount" :value="old('amount')"  autofocus autocomplete="amount" />
-                                <x-input-error :messages="$errors->get('amount')" class="mt-2 text-xl" />
+                                <x-input-label for="label" :value="__('Label')"  class="text-lg mt-6 " />
+                                <x-text-input id="label" class="block mt-1 w-full" type="number" name="label" :value="old('label')"  autofocus autocomplete="label" />
+                                <x-input-error :messages="$errors->get('label')" class="mt-2 text-xl" />
                             </div>
                             <!--Expires_at-->
                             <div>
-                                <x-input-label for="expires_at" :value="__('expires_at')"  class="text-lg mt-6 " />
+                                <x-input-label for="expires_at" :value="__('Expires at')"  class="text-lg mt-6 " />
                                 <x-text-input id="expires_at" class="block mt-1 w-full" type="date" name="expires_at" :value="old('expires_at')"  autofocus autocomplete="expires_at" />
                                 <x-input-error :messages="$errors->get('expires_at')" class="mt-2 text-xl" />
                             </div>

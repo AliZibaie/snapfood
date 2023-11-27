@@ -20,6 +20,10 @@ class Food extends Model
     {
         return $this->belongsTo(Restaurant::class);
     }
+    public function discount(): BelongsTo
+    {
+        return $this->belongsTo(Discount::class);
+    }
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Label;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,10 @@ class Discount extends Model
     protected $fillable = [
       'code',
       'expires_at',
-      'amount',
+      'label',
     ];
+    protected $casts = [
+      'label'=>Label::class,
+    ];
+
 }

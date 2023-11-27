@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('raw_materials')->nullable();
             $table->integer('price');
             $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('discount_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

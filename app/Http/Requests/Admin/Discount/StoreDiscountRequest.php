@@ -24,9 +24,9 @@ class StoreDiscountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code'=>'bail|required|string|min:10|unique:discounts',
+            'code'=>'bail|required|string|min:5|unique:discounts',
             'expires_at'=>'bail|required|date|after:tomorrow',
-            'amount'=>'bail|required|integer',
+            'label'=>'bail|required|integer',
         ];
     }
 }

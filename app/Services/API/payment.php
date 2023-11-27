@@ -10,12 +10,14 @@ class payment
     use HasFail;
     public static function store($cart)
     {
-        if (in_array($cart->toArray(), Auth::user()->carts->toArray())){
-            $payment = Auth::user()->payments()->create([ 'amount'=>self::getTotalPrice($cart)]);
-            $payment->order()->create([
+        if (in_array($cart->toArray(), Auth::user()->cart->toArray())){
+            $order = Auth::user()->orders()->create([
+                'amount'=>self::getTotalPrice($cart),
                 'address'=>Auth::user()->addresses()->where('is_default', 1)->first()->address,
+                'food'=>$cart->foods->pluck('name'),
+//                'restaurant'=>$cart->foods->pluck('name'),
             ]);
-            $cart->foods()->detach();
+
             $cart->delete();
             return response()->json([
                 'status'=>true,

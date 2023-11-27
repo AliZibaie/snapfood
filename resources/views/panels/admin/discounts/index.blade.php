@@ -25,7 +25,7 @@
                         <thead>
                         <tr>
                             <th>Discount code</th>
-                            <th>Amount</th>
+                            <th>Off</th>
                             <th>Expire Date</th>
                             <th>Actions</th>
                         </tr>
@@ -37,7 +37,7 @@
                                     {{$discount->code}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$discount->amount}}$
+                                    {{$discount->label}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
                                     {{$discount->expires_at}}

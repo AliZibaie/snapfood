@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->text('address');
             $table->enum('status', OrderStatus::getValues())->default('pending');
-            $table->foreignId('payment_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('food_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

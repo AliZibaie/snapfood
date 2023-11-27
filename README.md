@@ -32,12 +32,13 @@ This project is a clone of Snappfood
 # Installation
 <ol>
 <li>composer update</li>
+<li>cp .env.example .env</li>
 <li>npm install</li>
 <li>npm run dev</li>
 <li>wsl</li>
 <li>sail up -d</li>
 <li>php artisan migrate:fresh --seed</li>
-<li>php artisan generate:key</li>
+<li>php artisan key:generate</li>
 <li>php artisan storage:link</li>
 <li>php artisan serve</li>
 </ol>

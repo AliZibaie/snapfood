@@ -35,7 +35,6 @@ class Cart
             'count'=>$request->count ?? 1,
             'user_id'=>Auth::id(),
         ]);
-        $cart->foods()->attach($request->food_id);
         $food = \App\Models\Food::query()->find($request->food_id);
         return response()->json([
             'status'=>true,

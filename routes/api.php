@@ -35,8 +35,8 @@ use Illuminate\Support\Facades\Route;
 //});
 //Route::post('login', [AuthController::class,'login']);
 //Route::post('register', [AuthController::class,'register']);
-
-Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
+Route::prefix('v1')->group(function (){
+Route::middleware('auth:sanctum')->group(function (){
     Route::post('logout', [AuthController::class,'logout']);
     Route::apiResource('users', ProfileController::class);
     Route::post('users/{user}', [ProfileController::class, 'update']);
@@ -49,7 +49,6 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
     Route::post('carts/{cart}', [CartController::class, 'update']);
     Route::post('carts/{cart}/pay', [PaymentController::class, 'store']);
 });
-Route::prefix('v1')->group(function (){
     Route::post('login', [AuthController::class,'login']);
     Route::post('register', [AuthController::class,'register']);
 });
