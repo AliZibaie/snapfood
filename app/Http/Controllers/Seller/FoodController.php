@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Seller\Food\StoreDiscountRequest;
 use App\Http\Requests\Seller\Food\storeFoodRequest;
 use App\Http\Requests\Seller\Food\UpdateFoodRequest;
+use App\Models\Discount;
 use App\Models\Food;
 use App\Models\FoodCategory;
 use Illuminate\Http\Request;
@@ -44,9 +46,10 @@ class FoodController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Food $food)
     {
-        //
+        $discounts = Discount::all();
+        return view('panels.seller.foods.show', compact('food', 'discounts'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -79,6 +82,16 @@ class FoodController extends Controller
             return redirect("panel/foods")->with('success', 'food deleted successfully!');
         }catch (\Throwable $exception){
             return redirect("panel/foods", 500)->with('fail', 'failed to delete food!');
+        }
+    }
+
+    public function assignDiscount(StoreDiscountRequest $request, Food $food)
+    {
+        try {
+            $food->update(['discount_id'=>$request->discount]);
+            return redirect("panel/foods")->with('success', 'discount assigned successfully!');
+        }catch (\Throwable $exception){
+            return redirect("panel/foods", 500)->with('fail', 'failed to assign discount!');
         }
     }
 }

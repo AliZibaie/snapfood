@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::patch('addresses/{address}', [AddressController::class, 'setAddress']);
     Route::post('addresses/{address}', [AddressController::class, 'update']);
     Route::apiResource('restaurants', RestaurantController::class);
-    Route::apiResource('restaurants/{restaurant}/foods', FoodController::class);
+    Route::get('restaurants/{restaurant}/foods', [FoodController::class, 'index']);
     Route::apiResource('carts', CartController::class);
     Route::post('carts/{cart}', [CartController::class, 'update']);
     Route::post('carts/{cart}/pay', [PaymentController::class, 'store']);

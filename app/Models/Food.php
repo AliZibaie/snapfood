@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\FoodPrice;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,5 +38,10 @@ class Food extends Model
         'raw_materials',
         'restaurant_id',
         'price',
+        'discount_id',
     ];
+    protected $casts = [
+      'price'=>FoodPrice::class,
+    ];
+
 }

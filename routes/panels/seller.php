@@ -23,7 +23,9 @@ Route::middleware(['auth', 'no_more_schedule'])->group(function (){
 
 Route::middleware(['auth', 'role:seller'])->group(function (){
     Route::resource('panel/restaurants',RestaurantController::class)->except(['create', 'store']);
-    Route::resource('panel/foods',FoodController::class);
+    Route::resource('panel/foods',FoodController::class)->except('update');
+    Route::put('panel/foods/{food}',[FoodController::class, 'update'])->name('foods.update');
+    Route::patch('panel/foods/{food}',[FoodController::class, 'assignDiscount'])->name('foods.assign');
     Route::resource('panel/orders',OrderController::class);
     Route::resource('panel/archives',ArchiveController::class);
     Route::resource('panel/addresses',AddressController::class);

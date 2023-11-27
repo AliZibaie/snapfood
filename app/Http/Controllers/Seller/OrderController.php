@@ -26,4 +26,5 @@ class OrderController extends Controller
             return redirect("panel/orders/", 500)->with('fail', 'failed to update order status!');
         }
     }
+
 }

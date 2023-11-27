@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\Label;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Discount extends Model
 {
@@ -17,5 +18,8 @@ class Discount extends Model
     protected $casts = [
       'label'=>Label::class,
     ];
-
+    public function foods(): HasMany
+    {
+        return $this->hasMany(Food::class);
+    }
 }

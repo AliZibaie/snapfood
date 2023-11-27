@@ -21,7 +21,7 @@
                         </header>
                         <form method="post" action="{{ route('foods.update', $food) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                             @csrf
-                            @method('patch')
+                            @method('put')
 
                             <div>
                                 <x-input-label for="name" :value="__('Food name')" />
@@ -35,7 +35,7 @@
                             </div>
                             <div>
                                 <x-input-label for="price" :value="__('Price')" />
-                                <x-text-input id="price" name="price" type="number" class="mt-1 block w-full" :value="old('price', $food->price)" required autocomplete="price" />
+                                <x-text-input id="price" name="price" type="number" class="mt-1 block w-full" :value="old('price', (int) $food->price)" required autocomplete="price" />
                                 <x-input-error class="mt-2" :messages="$errors->get('price')" />
                             </div>
                             <img src="{{asset($food->image->url ?? '')}}" alt="food image" class="w-full max-h-20">
