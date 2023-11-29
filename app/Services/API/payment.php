@@ -2,6 +2,7 @@
 
 namespace App\Services\API;
 
+use App\enums\OrderStatus;
 use App\Mail\OrderStatusMail;
 use App\traits\HasFail;
 use Illuminate\Support\Facades\Auth;
@@ -13,16 +14,22 @@ class payment
     public static function store($cart)
     {
         if (in_array($cart->toArray(), Auth::user()->cart->toArray())){
+            $emailInfo = [
+                'total_price'=>self::getTotalPrice($cart),
+                'from'=>Auth::user()->addresses()->where('is_default', 1)->first()->address,
+                'to'=>$cart->food->restaurant->addresses()->where('is_default', 1)->first()->address ?? '',
+                'food'=>$cart->food->name,
+                'count'=>$cart->count,
+                'status'=>OrderStatus::PENDING,
+            ];
             $order = Auth::user()->orders()->create([
-                'amount'=>self::getTotalPrice($cart),
-                'address'=>Auth::user()->addresses()->where('is_default', 1)->first()->address,
-                'food'=>$cart->foods->pluck('name'),
-//                'restaurant'=>$cart->foods->pluck('name'),
+                'total_price'=>self::getTotalPrice($cart),
+                'food_id'=>$cart->food->id,
+                'count'=>$cart->count,
+                'food'=>$cart->food->name,
             ]);
-
+            Mail::to(Auth::user()->email)->send(new OrderStatusMail($emailInfo));
             $cart->delete();
-            Mail::to(Auth::user()->email);
-            new OrderStatusMail();
             return response()->json([
                 'status'=>true,
                 'message'=>'you paid your cart my bro thank you! now check your email to track your order.',
@@ -36,10 +43,11 @@ class payment
 
     public static function getTotalPrice($cart)
     {
-        $totalPrice = 0;
-        foreach ($cart->foods as $food) {
-            $totalPrice += $food->price * $cart->count;
+        $food = $cart->food;
+        if ($food->discount && $food->discount->label){
+            $priceWithDiscount = ((int) $food->price * (100 - (int) $food->discount->label))/100 .'$';
+            return ((int) $priceWithDiscount * $cart->count + $cart->food->restaurant->shipping_cost).'$';
         }
-        return $totalPrice;
+        return ((int) $cart->food->price * $cart->count + $cart->food->restaurant->shipping_cost.'$');
     }
 }

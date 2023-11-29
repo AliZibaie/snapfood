@@ -16,9 +16,8 @@ class OrderStatusMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(private $emailInfo )
     {
-        //
     }
 
     /**
@@ -36,8 +35,10 @@ class OrderStatusMail extends Mailable
      */
     public function content(): Content
     {
+        $info = $this->emailInfo;
         return new Content(
             markdown: 'mail.order-status-mail',
+            with:$info,
         );
     }
 

@@ -12,11 +12,12 @@ class Order extends Model
     protected $fillable = [
       'payment_id',
       'status',
-      'address',
+      'user_id',
+      'food_id',
     ];
 
-    public function payment() : BelongsTo
+    public function food() : BelongsTo
     {
-        return $this->belongsTo(Payment::class);
+        return $this->belongsTo(Food::class);
     }
 }

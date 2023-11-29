@@ -17,6 +17,8 @@ return new class extends Migration
             $table->enum('status', OrderStatus::getValues())->default('pending');
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('food_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('total_price');
+            $table->integer('count');
             $table->timestamps();
         });
     }
