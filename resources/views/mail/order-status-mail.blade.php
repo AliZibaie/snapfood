@@ -1,18 +1,18 @@
 <x-mail::message>
 # {{$status}}
-    @if($from)
+    @if(isset($from))
         From address : {{$from}}
     @endif
-    @if($to)
+    @if(isset($to))
         To address : {{$to}}
     @endif
-    @if($food)
+    @if(isset($food))
         Food : {{$food}}
     @endif
-    @if($count)
+    @if(isset($count))
         Count : {{$count}}
     @endif
-    @if($total_price)
+    @if(isset($total_price))
         Total price : {{$total_price}}
     @endif
 

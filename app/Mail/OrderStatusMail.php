@@ -16,7 +16,7 @@ class OrderStatusMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(private $emailInfo )
+    public function __construct(private array $emailInfo )
     {
     }
 
