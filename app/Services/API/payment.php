@@ -32,6 +32,7 @@ class payment
             $cart->delete();
             return response()->json([
                 'status'=>true,
+                'order_id'=>$order->id,
                 'message'=>'you paid your cart my bro thank you! now check your email to track your order.',
             ]);
         }

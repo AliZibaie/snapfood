@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Address\AddressController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Cart\CartController;
+use App\Http\Controllers\Api\Comment\CommentController;
 use App\Http\Controllers\Api\Payment\PaymentController;
 use App\Http\Controllers\Api\Restaurant\RestaurantController;
 use App\Http\Controllers\Api\Food\FoodController;
@@ -48,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('carts', CartController::class);
     Route::post('carts/{cart}', [CartController::class, 'update']);
     Route::post('carts/{cart}/pay', [PaymentController::class, 'store']);
+    Route::post('comments', [CommentController::class, 'store']);
 });
     Route::post('login', [AuthController::class,'login']);
     Route::post('register', [AuthController::class,'register']);
