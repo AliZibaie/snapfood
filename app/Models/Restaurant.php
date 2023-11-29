@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -47,6 +48,14 @@ class Restaurant extends Model
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+    public function orders(): HasManyThrough
+    {
+        return $this->hasManyThrough(Order::class, Food::class);
+    }
+    public function comments()
+    {
+        return $this->hasManyThrough(Comment::class, Order::class, 'food_id', 'order_id', 'id', 'id');
     }
     protected $casts = [
         'status'=>IsOpen::class,
