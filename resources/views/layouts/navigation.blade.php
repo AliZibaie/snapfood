@@ -36,7 +36,7 @@
                         </x-nav-link>
                     @endcan
                     @can('view restaurant')
-                        <x-nav-link :href="route('restaurants.edit', Auth::user()->restaurant)" :active="request()->routeIs('restaurants.index')">
+                        <x-nav-link :href="route('restaurants.edit', Auth::user()->restaurant)" :active="request()->routeIs('restaurants.edit')">
                             {{ __('Restaurant') }}
                         </x-nav-link>
                     @endcan

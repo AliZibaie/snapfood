@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Seller\Address;
 
+use App\Rules\UniqueLatitudeLongitude;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -26,9 +27,9 @@ class StoreAddressRequest extends FormRequest
         return [
             'title'=>'bail|required|min:3|max:255',
             'address'=>'bail|required|min:3|max:255',
-            'latitude'=>['bail', 'required', 'decimal:0,5',
+            'latitude'=>['bail', 'required', 'decimal:0,5'
                 ],
-            'longitude'=>['bail', 'required', 'decimal:0,5',
+            'longitude'=>['bail', 'required', 'decimal:0,5', new UniqueLatitudeLongitude
             ],
         ];
     }

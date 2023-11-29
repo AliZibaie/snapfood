@@ -43,6 +43,8 @@ class Restaurant
 
     public static function isOpen(RestaurantResource $resource)
     {
-        return 'bolbol';
+        $todaySchedule = $resource->schedules->where('day', strtolower(now()->dayName))->first();
+        $status = $todaySchedule->open_time  <= now()->toTimeString() && now()->toTimeString()<= $todaySchedule->close_time;
+        return $status ? 'open' : 'close';
     }
 }

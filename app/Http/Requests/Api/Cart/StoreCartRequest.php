@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api\Cart;
 
+use App\Rules\HaveCurrentAddress;
+use App\Rules\OnlyOneCart;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -25,7 +27,7 @@ class StoreCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'count'=>'integer',
+            'count'=>['integer', new HaveCurrentAddress, new OnlyOneCart],
             'food_id'=>'required|exists:food,id',
         ];
     }

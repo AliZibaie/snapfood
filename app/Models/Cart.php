@@ -15,9 +15,9 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function foods(): BelongsToMany
+    public function food(): BelongsTo
     {
-        return $this->belongsToMany(Food::class);
+        return $this->belongsTo(Food::class);
     }
     protected $fillable =
         [

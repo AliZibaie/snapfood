@@ -2,8 +2,10 @@
 
 namespace App\Services\API;
 
+use App\Mail\OrderStatusMail;
 use App\traits\HasFail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class payment
 {
@@ -19,6 +21,8 @@ class payment
             ]);
 
             $cart->delete();
+            Mail::to(Auth::user()->email);
+            new OrderStatusMail();
             return response()->json([
                 'status'=>true,
                 'message'=>'you paid your cart my bro thank you! now check your email to track your order.',
