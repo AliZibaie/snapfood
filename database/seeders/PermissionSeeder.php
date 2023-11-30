@@ -69,6 +69,7 @@ class PermissionSeeder extends Seeder
             Permission::create(['name' => 'view orders']),
             Permission::create(['name' => 'view reports']),
             Permission::create(['name' => 'view comments']),
+            Permission::create(['name' => 'store comment on comment']),
         ];
         foreach (RoleEnum::getValues() as $role) {
             $$role = Role::create(['name'=>$role]);

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('order_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('comment_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('message');
-            $table->integer('score');
+            $table->integer('score')->nullable();
             $table->boolean('is_accepted')->default(0);
             $table->boolean('seller_wants_delete')->default(0);
             $table->softDeletes();

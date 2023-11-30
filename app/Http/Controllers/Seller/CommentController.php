@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Seller\Comment\StoreCommentRequest;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Services\Comment as Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -13,17 +15,14 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = DB::table('comments')
-            ->join('orders', 'comments.order_id', '=', 'orders.id')
-            ->join('food', 'orders.food_id', '=', 'food.id')
-            ->where('food.restaurant_id', '=', Auth::user()->restaurant->id)
-            ->select('comments.*')
-            ->where('comments.is_accepted', 0)
-            ->where('comments.seller_wants_delete', 0)
-            ->get()
-            ->sortDesc();
-
+        $comments = Service::index();
         return view('panels.seller.comments.index', compact('comments'));
+    }
+
+    public function indexAccepteds()
+    {
+        $comments = Service::indexAccepteds();
+        return view('panels.seller.comments.accepteds.index', compact('comments'));
     }
 
     public function update(Comment $comment)
@@ -43,6 +42,22 @@ class CommentController extends Controller
             return redirect("panel/comments")->with('success', 'delete request has sent successfully!');
         }catch (\Throwable $exception){
             return redirect("panel/comments", 500)->with('fail', 'failed to send request!');
+        }
+    }
+
+    public function show(Comment $comment)
+    {
+        return view('panels.seller.comments.accepteds.show', compact('comment'));
+    }
+
+    public function answer(StoreCommentRequest $request, int $id)
+    {
+        try {
+            Comment::query()->create(['comment_id'=>$id,'message'=> $request->validated('message')]);
+            return redirect("panel/comments")->with('success', 'answer comment has sent successfully!');
+        }catch (\Throwable $exception){
+            dd($exception->getMessage());
+            return redirect("panel/comments", 500)->with('fail', 'failed to send message!');
         }
     }
 }

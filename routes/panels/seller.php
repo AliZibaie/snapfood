@@ -37,4 +37,7 @@ Route::middleware(['auth', 'role:seller'])->group(function (){
     Route::get('panel/reports',[ReportController::class, 'index'])->name('reports.index');
     Route::resource('panel/comments',CommentController::class);
     Route::put('panel/comments',[CommentController::class, 'update']);
+    Route::get('panel/accepted/comments',[CommentController::class, 'indexAccepteds'])->name('comments.accepteds');
+    Route::get('panel/accepted/comments/{comment}',[CommentController::class, 'show'])->name('comments.accepteds.show');
+    Route::post('panel/accepted/comments/{comment}',[CommentController::class, 'answer'])->name('comments.answer');
 });

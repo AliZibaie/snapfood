@@ -4,6 +4,9 @@
             <div class="">
                 {{ __('Comments management') }}
             </div>
+            <div>
+                <a href="{{route('comments.accepteds')}}">Accepted comments</a>
+            </div>
         </h2>
     </x-slot>
 
