@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\FoodCategoryController;
 use App\Http\Controllers\Admin\RestaurantCategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OrderController;
 
 
 
@@ -22,4 +23,5 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('panel/discounts',DiscountController::class);
     Route::resource('panel/comments/requests',CommentController::class);
     Route::put('panel/comments/requests/{comment}',[CommentController::class, 'update'])->name('requests.update');
+    Route::resource('panel/order', OrderController::class);
 });

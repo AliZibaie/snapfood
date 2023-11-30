@@ -75,7 +75,11 @@
                             {{ __('Comments') }}
                         </x-nav-link>
                     @endcan
-
+                    @can('view banners')
+                        <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
