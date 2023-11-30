@@ -14,4 +14,10 @@ class ArchiveController extends Controller
         $orders = Auth::user()->restaurant->orders->where('status', '=', 'delivered');
         return view('panels.seller.orders.archives.index', compact('orders'));
     }
+
+    public function show(int $id)
+    {
+        $order = Order::query()->find($id);
+        return view('panels.seller.orders.archives.show', compact('order'));
+    }
 }

@@ -9,7 +9,7 @@
     <div class="flex flex-col justify-between items-start py-5 w-auto h-auto  px-8 bg-gray-800 rounded-lg md:flex-row mt-8 h-[70vh] w-[100vh] mx-auto">
         <div class="relative">
         <div class="flex justify-center items-center w-70 h-70 bg-gradient-to-r from-yellow-400 to-[red] rounded-lg hover:-translate-y-10 duration-700 hover:scale-125">
-            <img src="{{asset($food->image->url)}}" alt=""  class="max-w-xs max-h-xs">
+            <img src="{{asset($food->image->url ?? '')}}" alt=""  class="max-w-xs max-h-xs">
 
         </div>
         <a class="px-8 py-2 bg-green-600  rounded-md text-red-700 font-semibold shadow-xl shadow-blue-500/50 hover:ring-2 ring-blue-400 hover:scale-75 duration-500 absolute
@@ -20,7 +20,7 @@
             <div class="flex justify-center items-center sm:justify-between">
                 <h2 class="text-blue-700 text-2xl font-bold tracking-widest">{{$food->name}}</h2>
             </div>
-            <p class="text-md text-yellow-200">{{$food->raw_materials}}</p>
+            <p class="text-md text-yellow-200">{{$food->raw_materials ?? ''}}</p>
             <ul>
                 @foreach($food->foodCategories->pluck('type') as $type)
                     <li class="text-lg text-purple-600">{{$type}}</li>

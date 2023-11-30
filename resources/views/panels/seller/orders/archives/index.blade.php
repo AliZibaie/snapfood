@@ -24,6 +24,7 @@
                             <th>count</th>
                             <th>income</th>
                             <th>ordered by</th>
+                            <th>More details</th>
                         </tr>
                         </thead>
                         <tbody class="space-y-4">
@@ -40,6 +41,11 @@
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
                                     {{$order->user->name}}
+                                </td>
+                                <td>
+                                    <a class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-yellowed-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" href="{{ route('archives.show', $order) }}">
+                                        {{ __('Info') }}
+                                    </a>
                                 </td>
                             </tr>
                         @empty
