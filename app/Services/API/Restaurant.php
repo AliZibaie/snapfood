@@ -16,19 +16,20 @@ class Restaurant
 
     public static function filter()
     {
-        $query = Model::query();
-        $query
-            ->when(request('type'), function ($q, $type) {
-                return $q->whereHas('restaurantCategories', function ($categoryQuery) use ($type) {
-                    $categoryQuery->where('type', $type);
-                });
-            })
-            ->when(request('score'), function ($request) use ($query) {
-                dd(request('score') , self::getAverageScore($query));
-                return $request <= self::getAverageScore();
-            })
-            ->get();
-        return $query;
+//        $query = Model::query();
+//        $query
+//            ->when(request('type'), function ($q, $type) {
+//                return $q->whereHas('restaurantCategories', function ($categoryQuery) use ($type) {
+//                    $categoryQuery->where('type', $type);
+//                });
+//            })
+//            ->when(request('score'), function ($request) use ($query) {
+//                dd(request('score') , self::getAverageScore($query));
+//                return $request <= self::getAverageScore();
+//            })
+//            ->get();
+//        return $query;
+        return Model::all();
     }
 
     public static function getAverageScore($query): float|int

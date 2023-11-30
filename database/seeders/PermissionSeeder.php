@@ -39,6 +39,8 @@ class PermissionSeeder extends Seeder
             Permission::create(['name' => 'view discount']),
             Permission::create(['name' => 'create discount']),
             Permission::create(['name' => 'delete discounts']),
+
+            Permission::create(['name' => 'view comment requests']),
         ];
 
         $sellerPermissions = [

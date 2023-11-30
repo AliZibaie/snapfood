@@ -18,7 +18,7 @@ class Food
                     "title"=>$resource->name,
                     "price"=>$resource->price,
                     "raw_material"=>$resource->raw_material,
-                    "image"=>asset($resource->image->url),
+                    "image"=>asset($resource->image->url ?? ''),
                 ],
             ];
         }
