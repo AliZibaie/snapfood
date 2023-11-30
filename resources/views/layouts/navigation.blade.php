@@ -60,11 +60,16 @@
                             {{ __('Orders') }}
                         </x-nav-link>
                     @endcan
-                    @role('seller')
+                    @can('view reports')
                     <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
                         {{ __('Reports') }}
                     </x-nav-link>
-                    @endrole
+                    @endcan
+                    @can('view comments')
+                        <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
+                            {{ __('Comments') }}
+                        </x-nav-link>
+                    @endcan
 
                 </div>
             </div>

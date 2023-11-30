@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('comment_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('message');
             $table->integer('score');
-            $table->boolean('delete_request_status')->default(0);
             $table->boolean('is_accepted')->default(0);
+            $table->boolean('seller_wants_delete')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

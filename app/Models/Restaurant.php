@@ -55,7 +55,7 @@ class Restaurant extends Model
     }
     public function comments()
     {
-        return $this->hasManyThrough(Comment::class, Order::class, 'food_id', 'order_id', 'id', 'id');
+        return $this->hasMany(Comment::class, 'order_id', 'id');
     }
     protected $casts = [
         'status'=>IsOpen::class,

@@ -20,23 +20,34 @@
                     <table class="table-fixed w-full">
                         <thead>
                         <tr>
-                            <th>Destination</th>
-                            <th>Foods</th>
-                            <th>Price</th>
+                            <th>Food</th>
+                            <th>count</th>
+                            <th>income</th>
+                            <th>ordered by</th>
                         </tr>
                         </thead>
                         <tbody class="space-y-4">
                         @forelse($orders as $order)
                             <tr>
                                 <td class="text-gray-500 text-xl text-center py-4">
-                                    {{$order['address']}}
+                                    {{$order->food->name}}
+                                </td>
+                                <td class="text-gray-500 text-xl text-center py-4">
+                                    {{$order->count}}
+                                </td>
+                                <td class="text-gray-500 text-xl text-center py-4">
+                                    {{$order->total_price}}
+                                </td>
+                                <td class="text-gray-500 text-xl text-center py-4">
+                                    {{$order->user->name}}
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <th class="text-center text-xl text-red-800">There is no address</th>
-                                <th class="text-center text-xl text-red-800">And no status</th>
-                                <th class="text-center text-xl text-red-800">And no action</th>
+                                <th class="text-center text-xl text-red-800">There is no food</th>
+                                <th class="text-center text-xl text-red-800">And no count</th>
+                                <th class="text-center text-xl text-red-800">And no total price</th>
+                                <th class="text-center text-xl text-red-800">And no user name</th>
                             </tr>
                         @endforelse
 

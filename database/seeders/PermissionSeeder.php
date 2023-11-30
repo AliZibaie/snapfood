@@ -67,6 +67,8 @@ class PermissionSeeder extends Seeder
             Permission::create(['name' => 'delete food party']),
 
             Permission::create(['name' => 'view orders']),
+            Permission::create(['name' => 'view reports']),
+            Permission::create(['name' => 'view comments']),
         ];
         foreach (RoleEnum::getValues() as $role) {
             $$role = Role::create(['name'=>$role]);

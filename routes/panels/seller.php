@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Seller\AddressController;
 use App\Http\Controllers\Seller\ArchiveController;
+use App\Http\Controllers\Seller\CommentController;
 use App\Http\Controllers\Seller\FoodController;
 use App\Http\Controllers\Seller\OrderController;
 use App\Http\Controllers\seller\ReportController;
@@ -34,4 +35,6 @@ Route::middleware(['auth', 'role:seller'])->group(function (){
     Route::put('panel/addresses/{address}',[AddressController::class, 'update'])->name('addresses.update');
     Route::resource('panel/schedules',ScheduleController::class)->except(['create', 'store']);
     Route::get('panel/reports',[ReportController::class, 'index'])->name('reports.index');
+    Route::resource('panel/comments',CommentController::class);
+    Route::put('panel/comments',[CommentController::class, 'update']);
 });

@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-      'payment_id',
+      'total_price',
+      'count',
       'status',
       'user_id',
       'food_id',
@@ -23,5 +25,10 @@ class Order extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments(): hasMany
+    {
+        return  $this->hasMany(Comment::class);
     }
 }

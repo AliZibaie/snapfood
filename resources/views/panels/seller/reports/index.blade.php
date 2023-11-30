@@ -42,7 +42,7 @@
                                     {{$order->status}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
-{{--                                    {{$order->total_price}}--}}
+                                    {{$order->total_price}}
                                 </td>
                                 <td class="text-gray-500 text-xl text-center py-4">
                                     {{$order->created_at}}
