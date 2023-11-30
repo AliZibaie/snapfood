@@ -50,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('carts/{cart}', [CartController::class, 'update']);
     Route::post('carts/{cart}/pay', [PaymentController::class, 'store']);
     Route::post('comments', [CommentController::class, 'store']);
+    Route::get('comments', [CommentController::class, 'index']);
 });
     Route::post('login', [AuthController::class,'login']);
     Route::post('register', [AuthController::class,'register']);

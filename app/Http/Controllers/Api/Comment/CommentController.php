@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Comment\StoreCommentRequest;
+use App\Http\Resources\Comment\CommentCollection;
 use App\Models\Comment;
 use App\traits\HasFail;
 use App\Services\API\Comment as Service;
@@ -18,5 +19,10 @@ class CommentController extends Controller
         }catch (\Throwable $exception){
             return Service::fail($exception);
         }
+    }
+
+    public function index()
+    {
+        return new CommentCollection(Service::index());
     }
 }
