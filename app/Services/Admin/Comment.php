@@ -14,6 +14,7 @@ class Comment
                 ->join('food', 'orders.food_id', '=', 'food.id')
                 ->select('comments.*')
                 ->where('comments.seller_wants_delete', 1)
+                ->where('comments.is_accepted', 0)
                 ->whereNull('comments.deleted_at')
                 ->get()
                 ->sortDesc();

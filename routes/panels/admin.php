@@ -21,4 +21,5 @@ Route::middleware(['auth', 'role:admin'])->group(function (){
     Route::resource('panel/categories/food',FoodCategoryController::class);
     Route::resource('panel/discounts',DiscountController::class);
     Route::resource('panel/comments/requests',CommentController::class);
+    Route::put('panel/comments/requests/{comment}',[CommentController::class, 'update'])->name('requests.update');
 });
