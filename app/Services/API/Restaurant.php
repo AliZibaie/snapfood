@@ -5,6 +5,7 @@ namespace App\Services\API;
 use App\Http\Resources\Restaurant\RestaurantCollection;
 use App\Models\Restaurant as Model;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 class Restaurant
 {
@@ -16,25 +17,46 @@ class Restaurant
 
     public static function filter()
     {
-//        $query = Model::query();
-//        $query
-//            ->when(request('type'), function ($q, $type) {
-//                return $q->whereHas('restaurantCategories', function ($categoryQuery) use ($type) {
-//                    $categoryQuery->where('type', $type);
-//                });
-//            })
-//            ->when(request('score'), function ($request) use ($query) {
-//                dd(request('score') , self::getAverageScore($query));
-//                return $request <= self::getAverageScore();
-//            })
-//            ->get();
-//        return $query;
-        return Model::all();
+//        $isOpen = request('is_open');
+//        $score = request('score_gt');
+//        $type = request('type');
+//        if ($type){
+//            $restaurants =  Model::query()
+//        }
+        return self::sortByNearest(Model::all());
     }
 
+    public static function getDistance($restaurant)
+    {
+        if (!Auth::user()->addresses->first()){
+            return response()->json([
+                'status' => false,
+                'message' => 'you dont have any addresses to search the restaurant near you!',
+            ], 401);
+        }
+        $userLatitude = Auth::user()->addresses()->where('is_default', 1)->first()->latitude;
+        $userLongitude = Auth::user()->addresses()->where('is_default', 1)->first()->longitude;
+        $restaurantLatitude = $restaurant->addresses()->where('is_default', 1)->first()->latitude;
+        $restaurantLongitude = $restaurant->addresses()->where('is_default', 1)->first()->longitude;
+        $distance = sqrt(pow(($userLatitude-$restaurantLatitude), 2) + pow(($userLongitude-$restaurantLongitude), 2));
+        return  $distance;
+    }
+
+    public static function sortByNearest($restaurants)
+    {
+        $distances = [];
+        foreach ($restaurants as $restaurant) {
+            $distances[$restaurant->id] = self::getDistance($restaurant);
+        }
+        krsort($distances);
+        $restaurants = [];
+        foreach ($distances as $key => $distance) {
+            $restaurants[] = Model::query()->find($key);
+        }
+        return $restaurants;
+    }
     public static function getAverageScore($query): float|int
     {
-        dd($query->first());
         $scores = $query->comments->pluck('score');
         return $scores->isNotEmpty() ? $scores->avg() : 0;
     }
