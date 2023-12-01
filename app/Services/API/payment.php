@@ -28,7 +28,6 @@ class payment
                 'count'=>$cart->count,
                 'food'=>$cart->food->name,
             ]);
-            Mail::to(Auth::user()->email)->send(new OrderStatusMail($emailInfo));
             $cart->delete();
             return response()->json([
                 'status'=>true,

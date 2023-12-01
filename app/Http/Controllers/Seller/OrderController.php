@@ -24,7 +24,7 @@ class OrderController extends Controller
         try {
             $info = ['status'=>$request->status];
             $order->update($info);
-            Mail::to($order->user->email)->send(new OrderStatusMail($info));
+//            Mail::to($order->user->email)->send(new OrderStatusMail($info));
             return redirect("panel/orders/")->with('success', 'order status updated successfully!');
         }catch (\Throwable $exception){
             return redirect("panel/orders/", 500)->with('fail', 'failed to update order status!');
