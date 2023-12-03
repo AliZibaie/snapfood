@@ -7,12 +7,24 @@ use App\Http\Requests\Admin\Categories\Food\StoreFoodCategoryRequest;
 use App\Http\Requests\Admin\Discount\StoreDiscountRequest;
 use App\Models\Discount;
 use Illuminate\Http\Request;
+use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class DiscountController extends Controller
 {
     public function index()
     {
         $discounts = Discount::all();
+//        SimpleExcelWriter::streamDownload('bolbol.xlsx')
+//            ->addRow([
+//                'first_name' => 'John',
+//                'last_name' => 'Doe',
+//            ])
+//            ->addRow([
+//                'first_name' => 'Jane',
+//                'last_name' => 'Doe',
+//            ])
+//            ->toBrowser();
+
         return view('panels.admin.discounts.index', compact('discounts'));
     }
     public function create()
