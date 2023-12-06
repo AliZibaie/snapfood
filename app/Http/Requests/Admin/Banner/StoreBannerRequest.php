@@ -12,7 +12,7 @@ class StoreBannerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('create banner');
+        return Auth::user()->hasPermissionTo('banners.create');
     }
 
     /**

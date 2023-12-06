@@ -48,6 +48,19 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin
+        container_name: phpmyadmin
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+        links:
+            - mysql
+        restart: always
+        ports:
+            - 8080:80
+        networks:
+            - sail
     redis:
         image: 'redis:alpine'
         ports:

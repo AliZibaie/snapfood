@@ -20,70 +20,46 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
         $adminPermissions = [
-            Permission::create(['name' => 'view banners']),
-            Permission::create(['name' => 'create banner']),
-            Permission::create(['name' => 'delete banners']),
-            Permission::create(['name' => 'edit banners']),
-
-            Permission::create(['name' => 'view restaurant categories']),
-            Permission::create(['name' => 'create restaurant category']),
-            Permission::create(['name' => 'delete restaurant categories']),
-            Permission::create(['name' => 'edit restaurant categories']),
-
-            Permission::create(['name' => 'view food categories']),
-            Permission::create(['name' => 'create food category']),
-            Permission::create(['name' => 'delete food categories']),
-            Permission::create(['name' => 'edit food categories']),
-
-            Permission::create(['name' => 'view discount']),
-            Permission::create(['name' => 'create discount']),
-            Permission::create(['name' => 'delete discounts']),
-
-            Permission::create(['name' => 'view comment requests']),
+            Permission::create(['name' => 'banners.*']),
+            Permission::create(['name' => 'discounts.admin.*']),
+            Permission::create(['name' => 'orders.admin.*']),
+            Permission::create(['name' => 'comments.admin.*']),
+            Permission::create(['name' => 'restaurant categories.*']),
+            Permission::create(['name' => 'food categories.*']),
         ];
-
         $sellerPermissions = [
-            Permission::create(['name' => 'view restaurant']),
-            Permission::create(['name' => 'create restaurant']),
-            Permission::create(['name' => 'delete restaurant']),
-            Permission::create(['name' => 'edit restaurant']),
-
-            Permission::create(['name' => 'view addresses']),
-            Permission::create(['name' => 'create address']),
-            Permission::create(['name' => 'delete addresses']),
-            Permission::create(['name' => 'edit addresses']),
-
-            Permission::create(['name' => 'view schedules']),
-            Permission::create(['name' => 'create schedule']),
-            Permission::create(['name' => 'delete schedules']),
-            Permission::create(['name' => 'edit schedules']),
-
-            Permission::create(['name' => 'view foods']),
-            Permission::create(['name' => 'create food']),
-            Permission::create(['name' => 'delete foods']),
-            Permission::create(['name' => 'edit foods']),
-
-            Permission::create(['name' => 'assign discount']),
-            Permission::create(['name' => 'assign food party']),
-            Permission::create(['name' => 'delete food party']),
-
-            Permission::create(['name' => 'view orders']),
-            Permission::create(['name' => 'view reports']),
-            Permission::create(['name' => 'view comments']),
-            Permission::create(['name' => 'store comment on comment']),
+            Permission::create(['name' => 'restaurants.*']),
+            Permission::create(['name' => 'addresses.*']),
+            Permission::create(['name' => 'schedules.*']),
+            Permission::create(['name' => 'foods.*']),
+            Permission::create(['name' => 'reports.*']),
+            Permission::create(['name' => 'orders.seller.*']),
+            Permission::create(['name' => 'comments.seller.*']),
+            Permission::create(['name' => 'discounts.seller.*'])
         ];
+
         foreach (RoleEnum::getValues() as $role) {
             $$role = Role::create(['name'=>$role]);
         }
+
         $admin->givePermissionTo($adminPermissions);
         $seller->givePermissionTo($sellerPermissions);
+
         $superAdmin = User::factory()->create([
             'name' => 'علی زیبایی',
             'email' => 'alizibaie1380@gmail.com',
             'password' => Hash::make(123456),
         ]);
+
+        $sampleSeller = User::factory()->create([
+            'name'=>'فورشنده اول' ,
+            'email'=>'alizibaie2001@gmail.com' ,
+            'password'=>Hash::make('Ali1380$50505'),
+        ]);
         $superAdmin->assignRole($admin);
+        $sampleSeller->assignRole($seller);
     }
 
 }

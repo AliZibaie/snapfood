@@ -15,9 +15,15 @@ class BannerController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->authorizeResource(Banner::class);
+    }
+
     public function index()
     {
         $banners = Banner::all();
+
         return view('panels.admin.banners.index', compact('banners'));
     }
 

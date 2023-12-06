@@ -15,69 +15,69 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @can('view banners')
+                    @can('banners.index')
                         <x-nav-link :href="route('banners.index')" :active="request()->routeIs('banners.index')">
                             {{ __('Banners') }}
                         </x-nav-link>
                     @endcan
-                    @can('view restaurant categories')
+                    @can('restaurant categories.index')
                         <x-nav-link :href="route('restaurant.index')" :active="request()->routeIs('restaurant.index')">
                             {{ __('Restaurant') }}
                         </x-nav-link>
                     @endcan
-                    @can('view food categories')
+                    @can('food categories.index')
                         <x-nav-link :href="route('food.index')" :active="request()->routeIs('food.index')">
                             {{ __('Food') }}
                         </x-nav-link>
                     @endcan
-                    @can('view discount')
+                    @can('discounts.admin.index')
                         <x-nav-link :href="route('discounts.index')" :active="request()->routeIs('discounts.index')">
-                            {{ __('discounts') }}
+                            {{ __('Discounts') }}
                         </x-nav-link>
                     @endcan
-                    @can('view restaurant')
-                        <x-nav-link :href="route('restaurants.edit', Auth::user()->restaurant)" :active="request()->routeIs('restaurants.edit')">
-                            {{ __('Restaurant') }}
-                        </x-nav-link>
-                    @endcan
-                        @can('view foods')
-                            <x-nav-link :href="route('foods.index')" :active="request()->routeIs('foods.index')">
-                                {{ __('Foods') }}
-                            </x-nav-link>
-                        @endcan
-                    @can('view addresses')
-                        <x-nav-link :href="route('addresses.index')" :active="request()->routeIs('addresses.index')">
-                            {{ __('Address') }}
-                        </x-nav-link>
-                    @endcan
-                    @can('view schedules')
-                            <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
-                                {{ __('Schedule') }}
-                            </x-nav-link>
-                    @endcan
-                    @can('view orders')
-                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
-                            {{ __('Orders') }}
-                        </x-nav-link>
-                    @endcan
-                    @can('view reports')
-                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
-                        {{ __('Reports') }}
-                    </x-nav-link>
-                    @endcan
-                    @can('view comments')
-                        <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
-                            {{ __('Comments') }}
-                        </x-nav-link>
-                    @endcan
-                    @can('view banners')
+                    @can('comments.admin.index')
                         <x-nav-link :href="route('requests.index')" :active="request()->routeIs('requests.index')">
                             {{ __('Comments') }}
                         </x-nav-link>
                     @endcan
-                    @can('view banners')
+                    @can('orders.admin.index')
                         <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
                             {{ __('Orders') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('restaurants.index')
+                        <x-nav-link :href="route('restaurants.edit', Auth::user()->restaurant)" :active="request()->routeIs('restaurants.edit')">
+                            {{ __('Restaurant') }}
+                        </x-nav-link>
+                    @endcan
+                        @can('foods.index')
+                            <x-nav-link :href="route('foods.index')" :active="request()->routeIs('foods.index')">
+                                {{ __('Foods') }}
+                            </x-nav-link>
+                        @endcan
+                    @can('addresses.index')
+                        <x-nav-link :href="route('addresses.index')" :active="request()->routeIs('addresses.index')">
+                            {{ __('Address') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('schedules.index')
+                            <x-nav-link :href="route('schedules.index')" :active="request()->routeIs('schedules.index')">
+                                {{ __('Schedule') }}
+                            </x-nav-link>
+                    @endcan
+                    @can('orders.seller.index')
+                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('reports.index')
+                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
+                        {{ __('Reports') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('comments.seller.index')
+                        <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">
+                            {{ __('Comments') }}
                         </x-nav-link>
                     @endcan
                 </div>

@@ -39,6 +39,7 @@
                                 </td>
                                 <td>
                                     <div class="flex justify-center">
+                                        @can('banners.delete')
                                         <form action="{{route('banners.destroy', $banner)}}" method="post">
                                             @csrf
                                             @method("DELETE")
@@ -46,6 +47,8 @@
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
+                                        @endcan
+                                        @can('banners.edit')
                                         <form action="{{route('banners.update', $banner)}}" method="post">
                                             @csrf
                                             @method("PATCH")
@@ -53,6 +56,8 @@
                                                 {{ __('Set') }}
                                             </x-primary-button>
                                         </form>
+                                            @endcan
+
                                     </div>
                                 </td>
                                 </tr>

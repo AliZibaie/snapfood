@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Services\Restaurant;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RestaurantCategorySeeder::class,
             FoodCategorySeeder::class,
             DiscountSeeder::class,
+            RestaurantSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
