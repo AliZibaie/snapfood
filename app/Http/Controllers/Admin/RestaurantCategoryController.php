@@ -19,7 +19,7 @@ class RestaurantCategoryController extends Controller
 {
     public function index()
     {
-        $restaurantCategories = RestaurantCategory::all();
+        $restaurantCategories = RestaurantCategory::paginate(5);
         return view('panels.admin.categories.restaurant.index', compact('restaurantCategories'));
     }
 
