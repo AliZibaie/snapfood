@@ -55,21 +55,23 @@ class Food
 
     public static function index()
     {
-        Auth::user()->restaurant->foods()->paginate(5);
         $user = Auth::user();
-        $foodsQuery = $user->restaurant->foods()->whereBetween('food.created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+        $foodsQuery = $user->restaurant->foods()
+            ->when(request()->has('name'), function ($query){
+                $name = request()->input('name');
+                return $query->where('food.name', 'like', "%$name%");
+            })
+            ->when(request()->has('price'), function ($query){
+                $price = request()->input('price');
+                return $query->where('food.price', '=', $price);
+            })
+        ->when(request()->has('category'), function ($query){
+        $category = request()->input('category');
+            $query->whereHas('foodCategories', function ($query) use ($category) {
+            $query->where('food_categories.type', $category);
+        });
+    });
 
-        if (request()->has('name') ) {
-            $name = request()->input('name');
-            $foodsQuery->where('food.name', 'like', "%$name%");
-        }
-
-        if (request()->input('category')) {
-            $category = request()->input('category');
-            $foodsQuery->whereHas('foodCategories', function ($query) use ($category) {
-                $query->where('food_categories.type', $category);
-            });
-        }
         return $foodsQuery->paginate(2);
     }
 
