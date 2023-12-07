@@ -36,6 +36,7 @@ Route::middleware(['auth', 'role:seller'])->group(function (){
     Route::put('panel/addresses/{address}',[AddressController::class, 'update'])->name('addresses.update');
     Route::resource('panel/schedules',ScheduleController::class)->except(['create', 'store']);
     Route::get('panel/reports',[ReportController::class, 'index'])->name('reports.index');
+    Route::post('panel/reports',[ReportController::class, 'download'])->name('reports.download');
     Route::resource('panel/comments',CommentController::class);
     Route::put('panel/comments',[CommentController::class, 'update']);
     Route::get('panel/accepted/comments',[CommentController::class, 'indexAccepteds'])->name('comments.accepteds');

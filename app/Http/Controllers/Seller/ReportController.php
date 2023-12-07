@@ -14,4 +14,15 @@ class ReportController extends Controller
         $orders = Service::index();
         return view('panels.seller.reports.index', compact('orders'));
     }
+
+    public function download()
+    {
+        try {
+            Service::download();
+            return redirect("panel/reports/")->with('success', 'order reports downloaded successfully!');
+        }catch (\Throwable $exception){
+            dd($exception->getMessage());
+            return redirect("panel/reports/", 500)->with('fail', 'failed to download reports !');
+        }
+    }
 }

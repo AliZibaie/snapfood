@@ -5,6 +5,7 @@ namespace App\Services;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order as Model;
+use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class Report
 {
@@ -26,6 +27,23 @@ class Report
             ->where('status', 'delivered')
             ->get();
         return $ordersQuery;
+    }
+
+    public static function download()
+    {
+        $orders = self::index();
+        $excelFile = SimpleExcelWriter::streamDownload('reports.xlsx');
+//            ->addHeader(['ordered_by', 'income', 'ordered_at']);
+        foreach ($orders as $order) {
+            $excelFile->addRow([
+                'ordered_by' => $order->user->name,
+                'income' => $orders->price,
+                'ordered_at' => $orders->created_at,
+            ]);
+
+            $excelFile->toBrowser();
+
+        }
     }
 
 }
