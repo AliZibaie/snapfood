@@ -62,4 +62,5 @@
             </div>
         </div>
     </div>
+    {{$foodCategories->links()}}
 </x-app-layout>

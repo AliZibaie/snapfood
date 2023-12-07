@@ -14,7 +14,7 @@ class FoodCategoryController extends Controller
 {
     public function index()
     {
-        $foodCategories = FoodCategory::all();
+        $foodCategories = FoodCategory::paginate(5);
         return view('panels.admin.categories.food.index', compact('foodCategories'));
     }
     public function create()
