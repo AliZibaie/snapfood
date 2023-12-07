@@ -10,41 +10,22 @@ class Report
 {
     public static function index()
     {
-        $filterBy = [
-            'hour' => self::getLastHour(),
-            'day' => self::getLastDay(),
-            'week' => self::getLastWeek(),
-            'month' => self::getLastMonth(),
-        ];
-
-        if (request('time')) {
-            if (!in_array(request('time'), array_keys($filterBy))){
-                return Auth::user()->restaurant->orders;
-
-            }
-            return $filterBy[request('time')]->get();
-        }
-
-        return Auth::user()->restaurant->orders;
+        $ordersQuery = Model::query()
+            ->when(request()->has('hour'), function ($query){
+                return $query->whereBetween('created_at', [now()->subHour(), now()]);
+            })
+            ->when(request()->has('day'), function ($query){
+                return $query->whereBetween('created_at', [now()->subDay(), now()]);
+            })
+            ->when(request()->has('week'), function ($query){
+                return $query->whereBetween('created_at', [now()->subWeek(), now()]);
+            })
+            ->when(request()->has('month'), function ($query){
+                return $query->whereBetween('created_at', [now()->subMonth(), now()]);
+            })
+            ->where('status', 'delivered')
+            ->get();
+        return $ordersQuery;
     }
 
-    public static function getLastHour()
-    {
-        return Model::query()->whereBetween('created_at', [now()->subHour(), now()]);
-    }
-
-    public static function getLastDay()
-    {
-        return Model::query()->whereBetween('created_at', [now()->subDay(), now()]);
-    }
-
-    public static function getLastWeek()
-    {
-        return Model::query()->whereBetween('created_at', [now()->subWeek(), now()]);
-    }
-
-    public static function getLastMonth()
-    {
-        return Model::query()->whereBetween('created_at', [now()->subMonth(), now()]);
-    }
 }
