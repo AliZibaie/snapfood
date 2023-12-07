@@ -20,8 +20,8 @@ Route::middleware(['auth', 'no_more_restaurant'])->group(function (){
 
 Route::middleware(['auth', 'no_more_schedule'])->group(function (){
     Route::get('panel/schedules/create',[ScheduleController::class, 'create'])->name('schedules.create');
-    Route::post('panel/schedules/create',[ScheduleController::class, 'store'])->name('schedules.store');
-//    Route::post('panel/schedules/create',[ScheduleController::class, 'store'])->name('schedules.store')->middleware('throttle:2,1');
+//    Route::post('panel/schedules/create',[ScheduleController::class, 'store'])->name('schedules.store');
+    Route::post('panel/schedules/create',[ScheduleController::class, 'store'])->name('schedules.store')->middleware('throttle:1,2');
 });
 
 Route::middleware(['auth', 'role:seller'])->group(function (){
