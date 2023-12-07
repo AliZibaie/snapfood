@@ -18,7 +18,5 @@ class Comment
                 ->whereNull('comments.deleted_at')
                 ->get()
                 ->sortDesc();
-
-
     }
 }

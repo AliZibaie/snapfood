@@ -70,7 +70,7 @@ class Food
                 $query->where('food_categories.type', $category);
             });
         }
-        return $foodsQuery->paginate(5);
+        return $foodsQuery->paginate(2);
     }
 
 }

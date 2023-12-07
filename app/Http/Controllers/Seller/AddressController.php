@@ -25,7 +25,7 @@ class AddressController extends Controller
 
     public function index()
     {
-        $addresses = Auth::user()->restaurant->addresses;
+        $addresses = Auth::user()->restaurant->addresses()->paginate(2);
         return view('panels.seller.addresses.index', compact('addresses'));
     }
 

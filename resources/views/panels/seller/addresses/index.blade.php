@@ -88,4 +88,5 @@
             </div>
         </div>
     </div>
+    {{$addresses->links()}}
 </x-app-layout>
