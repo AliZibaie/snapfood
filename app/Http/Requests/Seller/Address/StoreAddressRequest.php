@@ -14,7 +14,7 @@ class StoreAddressRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('create address');
+        return Auth::user()->hasPermissionTo('addresses.create');
     }
 
     /**

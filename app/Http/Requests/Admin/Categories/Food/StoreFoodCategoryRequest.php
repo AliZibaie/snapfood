@@ -12,7 +12,7 @@ class StoreFoodCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('create food category');
+        return Auth::user()->hasPermissionTo('food categories.create');
     }
 
     /**

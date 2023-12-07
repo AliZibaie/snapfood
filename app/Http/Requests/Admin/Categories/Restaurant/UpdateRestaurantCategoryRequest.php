@@ -12,7 +12,7 @@ class UpdateRestaurantCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('edit restaurant categories');
+        return Auth::user()->hasPermissionTo('restaurant categories.edit');
     }
 
     /**

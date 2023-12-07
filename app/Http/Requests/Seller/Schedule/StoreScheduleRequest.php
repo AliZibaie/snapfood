@@ -12,7 +12,7 @@ class StoreScheduleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('create schedule');
+        return Auth::user()->hasPermissionTo('schedules.create');
     }
 
     /**

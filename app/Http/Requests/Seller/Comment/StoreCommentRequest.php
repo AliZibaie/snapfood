@@ -12,7 +12,7 @@ class StoreCommentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('store comment on comment');
+        return Auth::user()->hasPermissionTo('comments.seller.create');
     }
 
     /**

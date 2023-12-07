@@ -14,7 +14,7 @@ class UpdateRestaurantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('edit restaurant');
+        return Auth::user()->hasPermissionTo('restaurants.edit');
 
     }
 

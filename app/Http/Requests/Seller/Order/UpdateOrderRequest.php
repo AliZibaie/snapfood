@@ -12,7 +12,7 @@ class UpdateOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('view orders');
+        return Auth::user()->hasPermissionTo('orders.seller.edit');
     }
 
     /**

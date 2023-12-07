@@ -13,7 +13,7 @@ class UpdateAddressRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('edit addresses');
+        return Auth::user()->hasPermissionTo('addresses.edit');
     }
 
     /**

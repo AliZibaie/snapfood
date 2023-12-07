@@ -12,7 +12,7 @@ class UpdateScheduleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('edit schedules');
+        return Auth::user()->hasPermissionTo('schedules.edit');
     }
 
     /**

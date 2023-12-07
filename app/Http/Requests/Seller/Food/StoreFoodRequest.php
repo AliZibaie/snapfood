@@ -13,7 +13,7 @@ class StoreFoodRequest extends FormRequest
     public function authorize(): bool
     {
 
-        return Auth::user()->hasPermissionTo('create food');
+        return Auth::user()->hasPermissionTo('foods.create');
 
     }
 

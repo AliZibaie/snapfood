@@ -13,7 +13,7 @@ class RestaurantCategoryPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return  true;
     }
 
     /**
@@ -21,23 +21,24 @@ class RestaurantCategoryPolicy
      */
     public function view(User $user, RestaurantCategory $restaurantCategory): bool
     {
-        //
+        return  true;
     }
+
 
     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
-        //
+        return  true;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, RestaurantCategory $restaurantCategory): bool
+    public function update(User $user,  $restaurantCategory): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +46,8 @@ class RestaurantCategoryPolicy
      */
     public function delete(User $user, RestaurantCategory $restaurantCategory): bool
     {
-        //
+        dd($restaurantCategory);
+        return  true;
     }
 
     /**
@@ -53,7 +55,7 @@ class RestaurantCategoryPolicy
      */
     public function restore(User $user, RestaurantCategory $restaurantCategory): bool
     {
-        //
+        return  true;
     }
 
     /**
@@ -61,6 +63,6 @@ class RestaurantCategoryPolicy
      */
     public function forceDelete(User $user, RestaurantCategory $restaurantCategory): bool
     {
-        //
+        return  true;
     }
 }

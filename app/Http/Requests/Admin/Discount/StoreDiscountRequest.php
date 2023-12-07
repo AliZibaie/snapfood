@@ -12,7 +12,7 @@ class StoreDiscountRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->hasPermissionTo('create discount');
+        return Auth::user()->hasPermissionTo('discounts.create');
 
     }
 

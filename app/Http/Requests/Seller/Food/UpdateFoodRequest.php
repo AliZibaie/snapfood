@@ -13,7 +13,7 @@ class UpdateFoodRequest extends FormRequest
     public function authorize(): bool
     {
 
-        return Auth::user()->hasPermissionTo('edit foods');
+        return Auth::user()->hasPermissionTo('foods.edit');
 
     }
 

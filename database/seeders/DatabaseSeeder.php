@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Services\Restaurant;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,12 +17,9 @@ class DatabaseSeeder extends Seeder
             FoodCategorySeeder::class,
             DiscountSeeder::class,
             RestaurantSeeder::class,
+            FoodSeeder::class,
+            ScheduleSeeder::class,
+            AddressSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
