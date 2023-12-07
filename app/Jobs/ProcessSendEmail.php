@@ -30,9 +30,7 @@ class ProcessSendEmail implements ShouldQueue
      */
     public function handle(): void
     {
-//        $email = new WelcomeMail();
-//        $this->user->notify(new WelcomeNotification());
         Notification::send($this->user, new WelcomeNotification());
-//        Mail::to($this->user->email)->send($email);
+//        Mail::to($this->user->email)->send(new WelcomeMail());
     }
 }

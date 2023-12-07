@@ -17,7 +17,6 @@ class Comment extends Model
       'comment_id',
       'message',
       'is_accepted',
-      'message',
       'seller_wants_delete',
     ];
     public function order() : BelongsTo
@@ -27,6 +26,6 @@ class Comment extends Model
 
     public function comment() : HasOne
     {
-       return $this->hasOne(Comment::class);
+        return $this->hasOne(Comment::class, 'comment_id', 'id');
     }
 }

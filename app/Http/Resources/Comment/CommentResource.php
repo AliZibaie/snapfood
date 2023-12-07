@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Comment;
 
-use App\Services\API\Resources\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,7 +22,7 @@ class CommentResource extends JsonResource
                 'foods'=>$this->order->food->name,
                 'score'=>$this->score,
                 'content'=>$this->message,
-                'answer'=>$this->comment->message ?? null,
+                'answer'=>$this->comment()->message ?? null,
             ]
         ];
     }

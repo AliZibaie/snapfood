@@ -4,7 +4,6 @@ namespace App\Services\API;
 
 use App\Models\Comment as Model;
 use App\traits\HasFail;
-use Illuminate\Support\Facades\DB;
 
 class Comment
 {
@@ -29,40 +28,22 @@ class Comment
 
     public static function index()
     {
-        if ($foodId = request('food_id') && !request('restaurant_id')){
-            return Model::query()
-                ->join('orders', 'comments.order_id', '=', 'orders.id')
-                ->join('food', 'orders.food_id', '=', 'food.id')
-                ->select('comments.*')
-                ->where('comments.is_accepted', 1)
-                ->where('food.id', '=', $foodId)
-                ->get()
-                ->sortDesc();
-        }
-        if ($restaurantId = request('restaurant_id') && !request('food_id')){
-            return Model::query()
+
+            $ordersQuery =  Model::query()
                 ->join('orders', 'comments.order_id', '=', 'orders.id')
                 ->join('food', 'orders.food_id', '=', 'food.id')
                 ->join('restaurants', 'food.restaurant_id', '=', 'restaurants.id')
-                ->select('comments.*')
+                ->when(request()->has('food_id'), function ($query) {
+                    $foodId = request('food_id');
+                    return $query->where('food.id', '=', $foodId);
+                })
+                ->when(request()->has('restaurant_id'), function ($query){
+                    $restaurantId = request('restaurant_id');
+                    return $query->where('restaurants.id', '=', $restaurantId);
+                })
                 ->where('comments.is_accepted', 1)
-                ->where('restaurants.id', '=', $restaurantId)
                 ->get()
                 ->sortDesc();
-        }
-        if ($foodId = request('food_id') && $restaurantId = request('restaurant_id')){
-            return Model::query()
-                ->join('orders', 'comments.order_id', '=', 'orders.id')
-                ->join('food', 'orders.food_id', '=', 'food.id')
-                ->join('restaurants', 'food.restaurant_id', '=', 'restaurants.id')
-                ->select('comments.*')
-                ->where('comments.is_accepted', 1)
-                ->where('restaurants.id', '=', $restaurantId)
-                ->where('food.id', '=', $foodId)
-                ->get()
-                ->sortDesc();
-        }
-        return Model::query()
-            ->where('is_accepted', 1)->get()->sortDesc();
+            return $ordersQuery;
     }
 }

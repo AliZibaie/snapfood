@@ -56,7 +56,6 @@ class CommentController extends Controller
             Comment::query()->create(['comment_id'=>$id,'message'=> $request->validated('message')]);
             return redirect("panel/comments")->with('success', 'answer comment has sent successfully!');
         }catch (\Throwable $exception){
-            dd($exception->getMessage());
             return redirect("panel/comments", 500)->with('fail', 'failed to send message!');
         }
     }
