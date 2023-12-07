@@ -15,6 +15,34 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
+// import Echo from '@ably/laravel-echo';
+//
+// window.Ably = require('ably');
+//
+// // Create new echo client instance using ably-js client driver.
+// window.Echo = new Echo({
+//     broadcaster: 'ably',
+// });
+//
+//
+// // Register a callback for listing to connection state change
+// window.Echo.connector.ably.connection.on((stateChange) => {
+//     console.log("LOGGER:: Connection event :: ", stateChange);
+//     if (stateChange.current === 'disconnected' && stateChange.reason?.code === 40142) { // key/token status expired
+//         console.log("LOGGER:: Connection token expired https://help.ably.io/error/40142");
+//     }
+// });
+// window.Echo.private('food')
+//     // .subscribed(function(){
+//     //     console.log('subscribed To Channel')
+//     // })
+//     // .listenToAll(function(){
+//     //     console.log('listening to channel')
+//     // })
+//     .listen('FilterFoodEvent', (data) => {
+//         console.log(data);
+//         updateFilters(event.food);
+//     });
 // import Echo from 'laravel-echo';
 
 // import Pusher from 'pusher-js';

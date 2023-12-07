@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\FilterFoodEvent;
 use App\Models\FoodCategory;
 use App\Models\Food as Model;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,7 @@ class Food
 
     public static function index()
     {
+        event(new FilterFoodEvent('food'));
         $foodsQuery = Auth::user()->restaurant->foods()
             ->when(request()->has('name'), function ($query){
                 $name = request()->input('name');

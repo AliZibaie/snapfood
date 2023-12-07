@@ -27,6 +27,7 @@
                 <option value="price">Price</option>
             </select>
         </form>
+
         <script src="{{asset('assets/js/foodRequest.js')}}"></script>
 
         <div class=" mx-auto sm:px-6 lg:px-8">
