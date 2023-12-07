@@ -38,4 +38,6 @@ This project is a clone of Snappfood
 <li>php artisan key:generate</li>
 <li>php artisan storage:link</li>
 <li>php artisan serve</li>
+<li>php artisan queue:work</li>
+<li>php artisan queue:listen</li>
 </ol>
