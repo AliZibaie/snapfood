@@ -13,6 +13,24 @@
     </x-slot>
 
     <div class="py-12">
+        <form class="flex flex-col md:flex-row gap- w-1/3 mx-auto mb-5"  method="get" action="{{route('reports.index')}}" onkeyup="submitForm(event)">
+            <div class="flex">
+                <input id="searchInput" type="text" placeholder="Search for the tool you like"
+                       class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-sky-500 focus:outline-none focus:border-sky-500"
+                       name="search"
+                >
+                <button type="submit" class="bg-sky-500 text-white rounded-r px-2 md:px-3 py-0 md:py-1">Search</button>
+            </div>
+            <select id="filterSelect" onchange="updatePlaceholder()">
+                <option value="" selected>All</option>
+                <option value="hour">Hour</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+            </select>
+        </form>
+
+        <script src="{{asset('assets/js/reportsRequest.js')}}"></script>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
