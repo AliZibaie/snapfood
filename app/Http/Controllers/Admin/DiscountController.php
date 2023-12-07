@@ -13,7 +13,7 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $discounts = Discount::all();
+        $discounts = Discount::paginate(5);
 //        SimpleExcelWriter::streamDownload('bolbol.xlsx')
 //            ->addRow([
 //                'first_name' => 'John',

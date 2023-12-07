@@ -66,4 +66,5 @@
             </div>
         </div>
     </div>
+    {{$discounts->links()}}
 </x-app-layout>
