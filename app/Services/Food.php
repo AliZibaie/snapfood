@@ -55,8 +55,7 @@ class Food
 
     public static function index()
     {
-        $user = Auth::user();
-        $foodsQuery = $user->restaurant->foods()
+        $foodsQuery = Auth::user()->restaurant->foods()
             ->when(request()->has('name'), function ($query){
                 $name = request()->input('name');
                 return $query->where('food.name', 'like', "%$name%");

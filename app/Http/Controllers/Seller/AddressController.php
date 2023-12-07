@@ -7,9 +7,8 @@ use App\Http\Requests\Seller\Address\StoreAddressRequest;
 use App\Http\Requests\Seller\Address\UpdateAddressRequest;
 use App\Models\Address;
 use App\traits\HasSetAddress;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Address as Service;
 
 class AddressController extends Controller
 {
@@ -25,7 +24,7 @@ class AddressController extends Controller
 
     public function index()
     {
-        $addresses = Auth::user()->restaurant->addresses()->paginate(2);
+        $addresses = Service::index();
         return view('panels.seller.addresses.index', compact('addresses'));
     }
 
